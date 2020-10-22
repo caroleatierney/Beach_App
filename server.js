@@ -3,7 +3,7 @@
 // ==================================================
 const express = require("express");
 const postgres = require("./postgres.js");
-const morgan = require("morgan");
+// const morgan = require("morgan");
 
 // ==================================================
 // =================  CONFIGURATION =================
