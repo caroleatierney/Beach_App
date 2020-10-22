@@ -20,27 +20,27 @@ if(getenv('DATABASE_URL')){ // if using the heroku database
 }
 
 class Beach {
-    public $id;
-    public $name;
-		public $photo;
-		public $photo_credit;
-    public $access;
-		public $parking;
-		public $hours;
-		public $avail_rec;
-		public $notes;
+  public $id;
+  public $name;
+	public $photo;
+	public $photo_credit;
+  public $access;
+	public $parking;
+	public $hours;
+	public $avail_rec;
+	public $notes;
 
-    public function __construct($id, $beach_name, $beach_photo, $photo_credit, $access, $parking, $hours, $avail_rec, $notes){
-        $this->id = $id;
-        $this->name = $name;
-        $this->photo = $photo;
-				$this->photo_credit = $photo_credit;
-				$this->access = $access;
-				$this->parking = $parking;
-				$this->hours = $hours;
-				$this->avail_rec = $avail_rec;
-				$this->notes = $notes;
-    }
+  public function __construct($id, $beach_name, $beach_photo, $photo_credit, $access, $parking, $hours, $avail_rec, $notes){
+    $this->id = $id;
+    $this->name = $name;
+    $this->photo = $photo;
+		$this->photo_credit = $photo_credit;
+		$this->access = $access;
+		$this->parking = $parking;
+		$this->hours = $hours;
+		$this->avail_rec = $avail_rec;
+		$this->notes = $notes;
+	}
 }
 
 class Beaches {

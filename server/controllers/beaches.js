@@ -1,3 +1,9 @@
+//***********************************************
+//***************** back end ********************
+//***********************************************
+//****** sends the request to db postgresql *****
+//***********************************************
+
 const express = require('express');
 const router = express.Router();
 const postgres = require('../postgres.js');
@@ -15,7 +21,9 @@ router.get('/', (req , res) => {
 // ===================== POST =======================
 // ==================================================
 router.post('/', (req , res) => {
-  console.log(req.body)
+
+  console.log("create-id", req.body)
+
   postgres.query
   (
   `INSERT INTO beaches (name, photo, photo_credit, access, parking, hours, avail_rec, notes)
@@ -48,6 +56,9 @@ router.post('/', (req , res) => {
 // ================== DELETE ========================
 // ==================================================
 router.delete('/:id', (req , res) => {
+
+  console.log("delete-id", req.params.id)
+
   postgres.query(`DELETE FROM beaches WHERE id = ${req.params.id};`, (err, results) => {
     postgres.query(`SELECT * FROM beaches ORDER BY id ASC;`, (err, results) => {
       res.json(results.rows)
@@ -59,6 +70,9 @@ router.delete('/:id', (req , res) => {
 // ===================== PUT ========================
 // ==================================================
 router.put('/:id', (req, res) => {
+
+  console.log("update/put-res", res.json.res)
+
   postgres.query(`
     UPDATE beaches
 

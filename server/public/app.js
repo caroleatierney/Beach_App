@@ -1,10 +1,14 @@
+//***********************************************
+//*************** front end ********************
+//***********************************************
+//********* sends the request back end  *********
+//***********************************************
 class App extends React.Component {
   state = {
     beaches:[]
   }
 
   componentDidMount = () => {
-    console.log('test');
     axios.get('/beaches').then(
       (response) => {
         this.setState({
@@ -17,6 +21,7 @@ class App extends React.Component {
   //***********************************************
   //**************** CREATE ***********************
   //***********************************************
+
   createBeach = (event) => {
     event.preventDefault();
     axios.post(
@@ -42,49 +47,49 @@ class App extends React.Component {
 
   changeNewBeachName = (event) => {
     this.setState({
-      newBeachName:event.target.value
+      newBeach_name:event.target.value
     });
   }
 
   changeNewBeachPhoto = (event) => {
     this.setState({
-      newBeachPhoto:event.target.value
+      newBeach_photo:event.target.value
     });
   }
 
   changeNewBeachPhoto_Credit = (event) => {
     this.setState({
-      newBeachPhoto_Credit:event.target.value
+      newBeach_photo_credit:event.target.value
     });
   }
 
   changeNewBeachAccess = (event) => {
     this.setState({
-      newBeachAccess:event.target.value
+      newBeach_access:event.target.value
     });
   }
 
   changeNewBeachParking = (event) => {
     this.setState({
-      newBeachParking:event.target.value
+      newBeach_parking:event.target.value
     });
   }
 
   changeNewBeachHours = (event) => {
     this.setState({
-      newBeachHours:event.target.value
+      newBeach_hours:event.target.value
     });
   }
 
   changeNewBeachAvail_Rec = (event) => {
     this.setState({
-      newBeachAvail_Rec:event.target.value
+      newBeach_avail_rec:event.target.value
     });
   }
 
   changeNewBeachNotes = (event) => {
     this.setState({
-      newBeachNotes:event.target.value
+      newBeach_notes:event.target.value
     });
   }
 
@@ -108,7 +113,7 @@ class App extends React.Component {
     event.preventDefault();
     const id = event.target.getAttribute('id');
     axios.put(
-      '/people/' + id,
+      '/beaches/' + id,
       {
         name:this.state.updateBeach_name,
         photo:this.state.updateBeach_photo,
@@ -139,56 +144,56 @@ class App extends React.Component {
   changeUpdateBeachName = (event) => {
     this.setState(
       {
-        udpateBeachName:event.target.value
+        updateBeach_name:event.target.value
       }
     )
   }
   changeUpdateBeachPhoto = (event) => {
     this.setState(
       {
-        udpateBeachPhoto:event.target.value
+        updateBeach_photo:event.target.value
       }
     )
   }
   changeUpdateBeachPhoto_Credit = (event) => {
     this.setState(
       {
-        udpateBeachPhoto_Credit:event.target.value
+        updateBeach_photo_credit:event.target.value
       }
     )
   }
   changeUpdateBeachAccess = (event) => {
     this.setState(
       {
-        udpateBeachAccess:event.target.value
+        updateBeach_access:event.target.value
       }
     )
   }
   changeUpdateBeachParking = (event) => {
     this.setState(
       {
-        udpateBeachParking:event.target.value
+        updateBeach_parking:event.target.value
       }
     )
   }
   changeUpdateBeachHours = (event) => {
     this.setState(
       {
-        udpateBeachHours:event.target.value
+        updateBeach_hours:event.target.value
       }
     )
   }
   changeUpdateBeachAvail_Rec = (event) => {
     this.setState(
       {
-        udpateBeachAvail_Rec:event.target.value
+        updateBeach_avail_rec:event.target.value
       }
     )
   }
   changeUpdateBeachNotes = (event) => {
     this.setState(
       {
-        udpateBeachNotes:event.target.value
+        updateBeach_notes:event.target.value
       }
     )
   }
@@ -214,7 +219,7 @@ class App extends React.Component {
             this.state.beaches.map((beach, index) => {
               return <li key={index}>
 
-                {beach.name}: {beach.name}
+                {beach.name}: {beach.photo}: {beach.photo_credit}: {beach.access}: {beach.parking}: {beach.hours}: {beach.avail_rec}: {beach.notes}
 
                 <button value={beach.id} onClick={this.deleteBeach}>DELETE BEACH</button>
 
@@ -222,11 +227,12 @@ class App extends React.Component {
                   <input onKeyUp={this.changeUpdateBeachName} type='text' placeholder='name' /><br/>
                   <input onKeyUp={this.changeUpdateBeachPhoto} type='text' placeholder='photo' /><br/>
                   <input onKeyUp={this.changeUpdateBeachPhoto_Credit} type='text' placeholder='photo credit' /><br/>
-                  <input onKeyUp={this.changeUpdateBeachPhoto_Access} type='text' placeholder='access' /><br/>
+                  <input onKeyUp={this.changeUpdateBeachAccess} type='text' placeholder='access' /><br/>
                   <input onKeyUp={this.changeUpdateBeachParking} type='text' placeholder='parking' /><br/>
                   <input onKeyUp={this.changeUpdateBeachHours} type='text' placeholder='hours' /><br/>
                   <input onKeyUp={this.changeUpdateBeachAvail_Rec} type='text' placeholder='available recreation' /><br/>
                   <input onKeyUp={this.changeUpdateBeachNotes} type='text' placeholder='notes' /><br/>
+                  <input type="submit" value="Update Beach Notes!" />
                 </form>
               </li>
             }
