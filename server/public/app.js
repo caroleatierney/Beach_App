@@ -1,9 +1,9 @@
 class App extends React.Component {
   state = {
-    beaches:[];
+    beaches:[]
   }
 
-  component DidMount = () => {
+  componentDidMount = () => {
     console.log('test');
     axios.get('/beaches').then(
       (response) => {
@@ -22,20 +22,22 @@ class App extends React.Component {
     axios.post(
       '/beaches',
       {
-        name.this.state.newBeach_name,
-        photo.this.state.newBeach_photo,
-        photo_credit.this.state.newBeach_photo_credit,
-        access.this.state.newBeach_access,
-        parking.this.state.newBeach_parking,
-        hours.this.state.newBeach_hours,
-        avail_rec.this.state.newBeach_avail_rec,
-        notes.this.state.newBeach_notes,
+        name:this.state.newBeach_name,
+        photo:this.state.newBeach_photo,
+        photo_credit:this.state.newBeach_photo_credit,
+        access:this.state.newBeach_access,
+        parking:this.state.newBeach_parking,
+        hours:this.state.newBeach_hours,
+        avail_rec:this.state.newBeach_avail_rec,
+        notes:this.state.newBeach_notes,
       }
-    ).then(response) => {
-      this.setState({
-        beaches:response.data
-      })
-    }
+    ).then(
+      (response) => {
+        this.setState({
+          beaches:response.data
+        })
+      }
+    )
   }
 
   changeNewBeachName = (event) => {
@@ -108,26 +110,27 @@ class App extends React.Component {
     axios.put(
       '/people/' + id,
       {
-        name.this.state.updateBeach_name,
-        photo.this.state.updateBeach_photo,
-        photo_credit.this.state.updateBeach_photo_credit,
-        access.this.state.updateBeach_access,
-        parking.this.state.updateBeach_parking,
-        hours.this.state.updateBeach_hours,
-        avail_rec.this.state.updateBeach_avail_rec,
-        notes.this.state.updateBeach_notes,
+        name:this.state.updateBeach_name,
+        photo:this.state.updateBeach_photo,
+        photo_credit:this.state.updateBeach_photo_credit,
+        access:this.state.updateBeach_access,
+        parking:this.state.updateBeach_parking,
+        hours:this.state.updateBeach_hours,
+        avail_rec:this.state.updateBeach_avail_rec,
+        notes:this.state.updateBeach_notes,
       }
-      ).then(
-        (reponse) => {
+    ).then(
+      (reponse) => {
+        this.setState({
           beaches:response.data,
           name:'',
           photo:'',
-          photo_credit',
-          access'',
-          parking'',
-          hours'',
-          avail_rec'',
-          notes'',
+          photo_credit:'',
+          access:'',
+          parking:'',
+          hours:'',
+          avail_rec:'',
+          notes:'',
         })
       }
     )
@@ -194,19 +197,21 @@ class App extends React.Component {
     return <div>
       <h2>Create Beach</h2>
       <form onSubmit={this.createBeach}>
-        <inputOnKeyUp={this.changeNewBeachName} type='text' placeholder='name' /<br/>
-        <inputOnKeyUp={this.changeNewBeachPhoto} type='text' placeholder='photo' /<br/>
-        <inputOnKeyUp={this.changeNewBeachPhoto_Credit} type='text' placeholder='photo credit' /<br/>
-        <inputOnKeyUp={this.changeNewBeachPhoto_Access} type='text' placeholder='access' /<br/>
-        <inputOnKeyUp={this.changeNewBeachParking} type='text' placeholder='parking' /<br/>
-        <inputOnKeyUp={this.changeNewBeachHours} type='text' placeholder='hours' /<br/>
-        <inputOnKeyUp={this.changeNewBeachAvail_Rec} type='text' placeholder='available recreation' /<br/>
-        <inputOnKeyUp={this.changeNewBeachNotes} type='text' placeholder='notes' /<br/>
+        <input onKeyUp={this.changeNewBeachName} type='text' placeholder='name' /><br/>
+        <input onKeyUp={this.changeNewBeachPhoto} type='text' placeholder='photo' /><br/>
+        <input onKeyUp={this.changeNewBeachPhoto_Credit} type='text' placeholder='photo credit' /><br/>
+        <input onKeyUp={this.changeNewBeachAccess} type='text' placeholder='access' /><br/>
+        <input onKeyUp={this.changeNewBeachParking} type='text' placeholder='parking' /><br/>
+        <input onKeyUp={this.changeNewBeachHours} type='text' placeholder='hours' /><br/>
+        <input onKeyUp={this.changeNewBeachAvail_Rec} type='text' placeholder='available recreation' /><br/>
+        <input onKeyUp={this.changeNewBeachNotes} type='text' placeholder='notes' /><br/>
+        <input type="submit" value="Create new discovered private Beach!" />
       </form>
+
       <h2> List of Marshfield Beaches </h2>
         <ul>
           {
-            this.state.beach.map((beach, index) => {
+            this.state.beaches.map((beach, index) => {
               return <li key={index}>
 
                 {beach.name}: {beach.name}
@@ -214,14 +219,14 @@ class App extends React.Component {
                 <button value={beach.id} onClick={this.deleteBeach}>DELETE BEACH</button>
 
                 <form id={beach.id} onSubmit={this.updateBeach}>
-                  <inputOnKeyUp={this.changeUpdateBeachName} type='text' placeholder='name' /<br/>
-                  <inputOnKeyUp={this.changeUpdateBeachPhoto} type='text' placeholder='photo' /<br/>
-                  <inputOnKeyUp={this.changeUpdateBeachPhoto_Credit} type='text' placeholder='photo credit' /<br/>
-                  <inputOnKeyUp={this.changeUpdateBeachPhoto_Access} type='text' placeholder='access' /<br/>
-                  <inputOnKeyUp={this.changeUpdateBeachParking} type='text' placeholder='parking' /<br/>
-                  <inputOnKeyUp={this.changeUpdateBeachHours} type='text' placeholder='hours' /<br/>
-                  <inputOnKeyUp={this.changeUpdateBeachAvail_Rec} type='text' placeholder='available recreation' /<br/>
-                  <inputOnKeyUp={this.changeUpdateBeachNotes} type='text' placeholder='notes' /<br/>
+                  <input onKeyUp={this.changeUpdateBeachName} type='text' placeholder='name' /><br/>
+                  <input onKeyUp={this.changeUpdateBeachPhoto} type='text' placeholder='photo' /><br/>
+                  <input onKeyUp={this.changeUpdateBeachPhoto_Credit} type='text' placeholder='photo credit' /><br/>
+                  <input onKeyUp={this.changeUpdateBeachPhoto_Access} type='text' placeholder='access' /><br/>
+                  <input onKeyUp={this.changeUpdateBeachParking} type='text' placeholder='parking' /><br/>
+                  <input onKeyUp={this.changeUpdateBeachHours} type='text' placeholder='hours' /><br/>
+                  <input onKeyUp={this.changeUpdateBeachAvail_Rec} type='text' placeholder='available recreation' /><br/>
+                  <input onKeyUp={this.changeUpdateBeachNotes} type='text' placeholder='notes' /><br/>
                 </form>
               </li>
             }
