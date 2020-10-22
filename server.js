@@ -11,7 +11,7 @@ const postgres = require("./postgres.js");
 const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT;
-morgan("tiny");
+// morgan("tiny");
 
 // ==================================================
 // ================== MIDDLEWARE ====================
