@@ -15,6 +15,7 @@ router.get('/', (req , res) => {
 // ===================== POST =======================
 // ==================================================
 router.post('/', (req , res) => {
+  console.log(req.body)
   postgres.query
   (
   `INSERT INTO beaches (name, photo, photo_credit, access, parking, hours, avail_rec, notes)
@@ -31,16 +32,22 @@ router.post('/', (req , res) => {
     )
   `,
     (err, results) => {
-    postgres.query(`SELECT * FROM beaches ORDER BY id ASC;`, (err, results) => {
-      res.json(results.rows)
-    });
+    if (err) {
+      res.status(500).json(err)
+      console.log(err);
+    }
+    else {
+      postgres.query(`SELECT * FROM beaches ORDER BY id ASC;`, (err, results) => {
+        res.json(results.rows)
+      });
+    }
   })
 });
 
 // ==================================================
 // ================== DELETE ========================
 // ==================================================
-router.delete('/id', (req , res) => {
+router.delete('/:id', (req , res) => {
   postgres.query(`DELETE FROM beaches WHERE id = ${req.params.id};`, (err, results) => {
     postgres.query(`SELECT * FROM beaches ORDER BY id ASC;`, (err, results) => {
       res.json(results.rows)
@@ -52,8 +59,22 @@ router.delete('/id', (req , res) => {
 // ===================== PUT ========================
 // ==================================================
 router.put('/:id', (req, res) => {
-  postgres.query(`UPDATE beaches WHERE id = ${req.params.id};`, (err, results) => {
-    postgres.query('SELECT * FROM people ORDER BY id ASC;', (err, results) => {
+  postgres.query(`
+    UPDATE beaches
+
+    SET
+    name='${req.body.name}',
+    photo='${req.body.photo}',
+    photo_credit='${req.body.photo_credit}',
+    access='${req.body.access}',
+    parking='${req.body.parking}',
+    hours='${req.body.hours}',
+    avail_rec='${req.body.avail_rec}',
+    notes='${req.body.notes}'
+
+    WHERE id = ${req.params.id};`,
+    (err, results) => {
+    postgres.query('SELECT * FROM beaches ORDER BY id ASC;', (err, results) => {
       res.json(results.rows)
     });
   });

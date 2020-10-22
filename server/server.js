@@ -3,6 +3,7 @@
 // ==================================================
 const express = require("express");
 const postgres = require("./postgres.js");
+const morgan = require("morgan");
 
 // ==================================================
 // =================  CONFIGURATION =================
@@ -10,12 +11,13 @@ const postgres = require("./postgres.js");
 const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT;
+morgan("tiny");
 
 // ==================================================
 // ================== MIDDLEWARE ====================
 // ==================================================
 app.use(express.json());
-app.use(express.static('public)'))
+app.use(express.static('public'))
 
 // ==================================================
 // ================== CONTROLLERS ===================
