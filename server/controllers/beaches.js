@@ -22,7 +22,7 @@ router.get('/', (req , res) => {
 // ==================================================
 router.post('/', (req , res) => {
 
-  console.log("create-id", req.body)
+  // console.log("create-id", req.body)
 
   postgres.query
   (
@@ -57,7 +57,7 @@ router.post('/', (req , res) => {
 // ==================================================
 router.delete('/:id', (req , res) => {
 
-  console.log("delete-id", req.params.id)
+  // console.log("delete-id", req.params.id)
 
   postgres.query(`DELETE FROM beaches WHERE id = ${req.params.id};`, (err, results) => {
     postgres.query(`SELECT * FROM beaches ORDER BY id ASC;`, (err, results) => {
@@ -71,7 +71,7 @@ router.delete('/:id', (req , res) => {
 // ==================================================
 router.put('/:id', (req, res) => {
 
-  console.log("update/put-res", res.json.res)
+  console.log("update/put-res", req.params.id)
 
   postgres.query(`
     UPDATE beaches
