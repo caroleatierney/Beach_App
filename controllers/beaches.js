@@ -71,7 +71,7 @@ router.delete('/:id', (req , res) => {
 // ==================================================
 router.put('/:id', (req, res) => {
 
-  console.log("update/put-res", req.params.id)
+  // console.log("update/put-res", req.params.id)
 
   postgres.query(`
     UPDATE beaches
