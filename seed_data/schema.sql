@@ -1,3 +1,5 @@
+-- schema
+
 drop table if exists beaches;
 
 CREATE TABLE beaches
