@@ -11,7 +11,7 @@ const morgan = require("morgan");
 const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT;
-morgan("tiny");
+// morgan("tiny");
 
 // ==================================================
 // ================== MIDDLEWARE ====================
