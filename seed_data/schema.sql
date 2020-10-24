@@ -1,6 +1,6 @@
 -- schema
 
-drop table if exists beaches;
+DROP TABLE IF EXISTS beaches;
 
 CREATE TABLE beaches
 (
