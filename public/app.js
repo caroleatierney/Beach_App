@@ -202,12 +202,14 @@ class App extends React.Component {
     return <div>
       <div className="container">
 
-        <nav className="navbar" role="navigation" aria-label="main navigation">
+        <nav className="navbar is-transparent" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
             <a className="navbar-item" href="https://bulma.io">
               <img src="https://i.imgur.com/kWKYRa8.jpg"/>
             </a>
           </div>
+
+          {/* nav bar */}
           <div className="navbar-menu">
             <div className="navbar-start">
               <a className="navbar-item">town history</a>
@@ -219,10 +221,10 @@ class App extends React.Component {
               <div className="navbar-item">
                 <div className="buttons">
                   <a className= "button is-primary">
-                    <strong>log in</strong>
-                  </a>
-                  <a className= "button is-primary">
                     <strong>get started</strong>
+                  </a>
+                  <a className= "button is-light">
+                    <strong>log in</strong>
                   </a>
                 </div>
               </div>
@@ -230,14 +232,21 @@ class App extends React.Component {
           </div>
         </nav>
 
-        <section className="hero is-success">
-          <div className="container">
-            <h1 className="title">Welcome Marshfield Beachgoers!</h1>
-            <h2>Below is your Beach bucket list - Please update your vote!</h2>
-            <h2><i className="title fas fa-thumbs-up"></i><i className="title fas fa-thumbs-down"></i></h2>
+        {/* hero section */}
+        <section className="hero">
+          <div className="columns">
+          <div className="column is-one-third">
+              <img src="https://i.imgur.com/kWKYRa8.jpg"/>
+            </div>
+          <div className="column is-two-thirds">
+              <h1 className="title">Welcome Marshfield Beachgoers!</h1>
+              <h2>Below is your Beach bucket list - Please update your vote!</h2>
+              <h2><i className="title fas fa-thumbs-up"></i><i className="title fas fa-thumbs-down"></i></h2>
+            </div>
           </div>
         </section>
 
+        {/* create beach */}
         <h2>Create Beach</h2>
         <form onSubmit={this.createBeach}>
           <input onKeyUp={this.changeNewBeachName} type='text' placeholder='name' /><br/>
@@ -251,33 +260,51 @@ class App extends React.Component {
           <input type="submit" value="Create new discovered private Beach!" />
         </form>
 
-        <h2> List of Marshfield Beaches </h2>
-        <ul>
-          {
-            this.state.beaches.map((beach, index) => {
-              return <li key={index}>
+        {/* beach list */}
+        <div className="container">
+          <h2> List of Marshfield Beaches </h2>
+            <ul>
+              {
+                this.state.beaches.map((beach, index) => {
+                  return <li key={index}>
+                    <div className="columns">
 
-                {beach.name}: {beach.photo}: {beach.photo_credit}: {beach.access}: {beach.parking}: {beach.hours}: {beach.avail_rec}: {beach.notes}
+                      {/* beach photo} */}
+                      <div className="column">
+                        <img src={beach.photo}/>
+                        <h3>photo credit: {beach.photo_credit}</h3>
+                      </div>
 
-                <button value={beach.id} onClick={this.deleteBeach}>DELETE BEACH</button>
+                      {/* beach card */}
+                      {/* show beach notes with button links*/}
+                      <div className="column is-multiline">
+                        <div className="column">
+                          <div className="card">
+                            <div className="card-content is-vcentered has-text-centered">
+                              <p className="title">Beach Notes</p>
+                              <p className="title">{beach.notes}</p>
+                            </div>
 
-                <form id={beach.id} onSubmit={this.updateBeach}>
-                  <input onKeyUp={this.changeUpdateBeachName} type='text' placeholder='name' /><br/>
-                  <input onKeyUp={this.changeUpdateBeachPhoto} type='text' placeholder='photo' /><br/>
-                  <input onKeyUp={this.changeUpdateBeachPhoto_Credit} type='text' placeholder='photo credit' /><br/>
-                  <input onKeyUp={this.changeUpdateBeachAccess} type='text' placeholder='access' /><br/>
-                  <input onKeyUp={this.changeUpdateBeachParking} type='text' placeholder='parking' /><br/>
-                  <input onKeyUp={this.changeUpdateBeachHours} type='text' placeholder='hours' /><br/>
-                  <input onKeyUp={this.changeUpdateBeachAvail_Rec} type='text' placeholder='available recreation' /><br/>
-                  <input onKeyUp={this.changeUpdateBeachNotes} type='text' placeholder='notes' /><br/>
-                  <input type="submit" value="Update Beach Notes!" />
-                </form>
-              </li>
-            }
-          )
-        }
-      </ul>
+                            {/* card footer */}
+                            <footer className="card-footer">
+                              <p className="card-footer-item">
+                                <button value={beach.id} onClick={this.deleteBeach}>delete beach</button>
+                                <button value={beach.id} >update notes</button>
+                                <button value={beach.id} >more information</button>
+                              </p>
+                            </footer>
+                          </div>
+                        </div>
+                      </div>
 
+                    </div>
+                  </li>
+                })
+              }
+            </ul>
+        </div>
+
+      {/* page footer */}
       <footer className="footer">
         <div className="content has-text-centered">
           <p>
@@ -294,3 +321,36 @@ ReactDOM.render(
     <App></App>,
     document.querySelector('main')
 )
+
+// save these in variables and update
+// <input onKeyUp={this.changeUpdateBeachName} type='text'  default='name' /><br/>
+// <input onKeyUp={this.changeUpdateBeachPhoto} type='text' placeholder='photo' /><br/>
+// <input onKeyUp={this.changeUpdateBeachPhoto_Credit} type='text' placeholder='photo credit' /><br/>
+// <input onKeyUp={this.changeUpdateBeachAccess} type='text' placeholder='access' /><br/>
+// <input onKeyUp={this.changeUpdateBeachParking} type='text' placeholder='parking' /><br/>
+// <input onKeyUp={this.changeUpdateBeachHours} type='text' placeholder='hours' /><br/>
+// <input onKeyUp={this.changeUpdateBeachAvail_Rec} type='text' placeholder='available recreation' /><br/>
+
+
+
+// <div className="column is-multiline">
+  // <h1>{beach.name}</h1>
+  // <h2>{beach.access}</h2>
+  // <h2>{beach.parking}</h2>
+  // <h2>{beach.hours}</h2>
+  // <h2>{beach.avail_rec}</h2>
+  // <h2>{beach.notes}</h2>
+  // <button value={beach.id} onClick={this.deleteBeach}>DELETE BEACH</button>
+// </div>
+
+
+
+// <div className="column">
+  // <div className="card">
+    // <div className="card-content">
+      // <form id={beach.id} onSubmit={this.updateBeach}>
+        // <input onKeyUp={this.changeUpdateBeachNotes} type='text' placeholder='notes' /><br/>
+        // <input type="submit" value="Update Beach Notes!" />
+      // </form>
+    // </div>
+  // </div>
