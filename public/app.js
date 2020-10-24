@@ -200,25 +200,58 @@ class App extends React.Component {
 
   render = () => {
     return <div>
-    <div class="section">
-    <div class="container">
-    <div>
-      <h1 class="title">Welcome Marshfield visitors!</h1>
-    </div>
-      <h2>Create Beach</h2>
-      <form onSubmit={this.createBeach}>
-        <input onKeyUp={this.changeNewBeachName} type='text' placeholder='name' /><br/>
-        <input onKeyUp={this.changeNewBeachPhoto} type='text' placeholder='photo' /><br/>
-        <input onKeyUp={this.changeNewBeachPhoto_Credit} type='text' placeholder='photo credit' /><br/>
-        <input onKeyUp={this.changeNewBeachAccess} type='text' placeholder='access' /><br/>
-        <input onKeyUp={this.changeNewBeachParking} type='text' placeholder='parking' /><br/>
-        <input onKeyUp={this.changeNewBeachHours} type='text' placeholder='hours' /><br/>
-        <input onKeyUp={this.changeNewBeachAvail_Rec} type='text' placeholder='available recreation' /><br/>
-        <input onKeyUp={this.changeNewBeachNotes} type='text' placeholder='notes' /><br/>
-        <input type="submit" value="Create new discovered private Beach!" />
-      </form>
+      <div className="container">
 
-      <h2> List of Marshfield Beaches </h2>
+        <nav className="navbar" role="navigation" aria-label="main navigation">
+          <div className="navbar-brand">
+            <a className="navbar-item" href="https://bulma.io">
+              <img src="https://i.imgur.com/kWKYRa8.jpg"/>
+            </a>
+          </div>
+          <div className="navbar-menu">
+            <div className="navbar-start">
+              <a className="navbar-item">town history</a>
+              <a className="navbar-item">restaurants</a>
+              <a className="navbar-item">must visit</a>
+              <a className="navbar-item">helpful links</a>
+            </div>
+            <div className="navbar-end">
+              <div className="navbar-item">
+                <div className="buttons">
+                  <a className= "button is-primary">
+                    <strong>log in</strong>
+                  </a>
+                  <a className= "button is-primary">
+                    <strong>get started</strong>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <section className="hero is-success">
+          <div className="container">
+            <h1 className="title">Welcome Marshfield Beachgoers!</h1>
+            <h2>Below is your Beach bucket list - Please update your vote!</h2>
+            <h2><i className="title fas fa-thumbs-up"></i><i className="title fas fa-thumbs-down"></i></h2>
+          </div>
+        </section>
+
+        <h2>Create Beach</h2>
+        <form onSubmit={this.createBeach}>
+          <input onKeyUp={this.changeNewBeachName} type='text' placeholder='name' /><br/>
+          <input onKeyUp={this.changeNewBeachPhoto} type='text' placeholder='photo' /><br/>
+          <input onKeyUp={this.changeNewBeachPhoto_Credit} type='text' placeholder='photo credit' /><br/>
+          <input onKeyUp={this.changeNewBeachAccess} type='text' placeholder='access' /><br/>
+          <input onKeyUp={this.changeNewBeachParking} type='text' placeholder='parking' /><br/>
+          <input onKeyUp={this.changeNewBeachHours} type='text' placeholder='hours' /><br/>
+          <input onKeyUp={this.changeNewBeachAvail_Rec} type='text' placeholder='available recreation' /><br/>
+          <input onKeyUp={this.changeNewBeachNotes} type='text' placeholder='notes' /><br/>
+          <input type="submit" value="Create new discovered private Beach!" />
+        </form>
+
+        <h2> List of Marshfield Beaches </h2>
         <ul>
           {
             this.state.beaches.map((beach, index) => {
@@ -244,17 +277,16 @@ class App extends React.Component {
           )
         }
       </ul>
-    </div>
-    </div>
-    <footer class="footer">
-      <div class="content has-text-centered">
-        <p>
-          <strong> catZwebZ 2020 </strong>
-        </p>
-      </div>
-    </footer>
 
+      <footer className="footer">
+        <div className="content has-text-centered">
+          <p>
+            <strong> catZwebZ 2020 </strong>
+          </p>
+        </div>
+      </footer>
     </div>
+  </div>
   }
 }
 
