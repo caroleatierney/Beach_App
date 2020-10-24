@@ -200,6 +200,11 @@ class App extends React.Component {
 
   render = () => {
     return <div>
+    <div class="section">
+    <div class="container">
+    <div>
+      <h1 class="title">Welcome Marshfield visitors!</h1>
+    </div>
       <h2>Create Beach</h2>
       <form onSubmit={this.createBeach}>
         <input onKeyUp={this.changeNewBeachName} type='text' placeholder='name' /><br/>
@@ -239,6 +244,16 @@ class App extends React.Component {
           )
         }
       </ul>
+    </div>
+    </div>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong> catZwebZ 2020 </strong>
+        </p>
+      </div>
+    </footer>
+
     </div>
   }
 }
