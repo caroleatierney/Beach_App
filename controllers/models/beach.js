@@ -1,5 +1,4 @@
 <?php
-//for heroku configuration use command heroku pg:psql postgresql-protected_temp-37399--app marbeachrec-app to connect in terminal
 $dbconn = null;
 if(getenv('DATABASE_URL')){ // if using the heroku database
 	$connectionConfig = parse_url(getenv('DATABASE_URL'));
@@ -29,8 +28,10 @@ class Beach {
 	public $hours;
 	public $avail_rec;
 	public $notes;
+	public $latitude;
+	public $longitude;
 
-  public function __construct($id, $beach_name, $beach_photo, $photo_credit, $access, $parking, $hours, $avail_rec, $notes){
+  public function __construct($id, $beach_name, $beach_photo, $photo_credit, $access, $parking, $hours, $avail_rec, $notes, $latitude, $longitude){
     $this->id = $id;
     $this->name = $name;
     $this->photo = $photo;
@@ -40,6 +41,8 @@ class Beach {
 		$this->hours = $hours;
 		$this->avail_rec = $avail_rec;
 		$this->notes = $notes;
+		$this->latitude = $latitude;
+		$this->longitude = $longitude;
 	}
 }
 
@@ -51,14 +54,15 @@ class Beaches {
       return self::all();
     }
     static function update($updated_beach) {
-      $query = "UPDATE beaches SET beach_name = $1, beach_photo = $2, photo_credit = $3, access = $4, parking = $5, hours = $6, avail_rec=$7, notes = $8 WHERE id = $9";
-      $query_params = array($updated_beach->beach_name, $updated_beach->beach_photo, $updated_beach->photo_credit, $updated_beach->access, $updated_beach->parking, $updated_beach->hours, $updated_beach->avail_rec, $updated_beach->notes, $updated_beach->id);
-      pg_query_params($query, $query_params);
+      $query = "UPDATE beaches SET beach_name = $1, beach_photo = $2, photo_credit = $3, access = $4, parking = $5, hours = $6, avail_rec=$7, notes=$8, latitude=$9, longitude=$10 WHERE id = $11";
+      $query_params = array($updated_beach->beach_name, $updated_beach->beach_photo, $updated_beach->photo_credit, $updated_beach->access, $updated_beach->parking, $updated_beach->hours, $updated_beach->avail_rec, $updated_beach->notes, $updated_beach->latitude, $updated_beach->longitude, $updated_beach->id);
+      pg_query_params($query, $query_params);  //pass the query and the params to pg_query_params
       return self::all();
     }
     static function create($beach){
-      $query = "INSERT INTO beaches (name, photo, photo_credit, access, parking, hours, avail_rec, notes) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)";
-      $query_params = array($updated_beach->beach_name, $updated_beach->beach_photo, $updated_beach->photo_credit, $updated_beach->access, $updated_beach->parking, $updated_beach->hours, $updated_beach->avail_rec, $updated_beach->notes);    pg_query_params($query, $query_params); //pass the query and the params to pg_query_params
+      $query = "INSERT INTO beaches (name, photo, photo_credit, access, parking, hours, avail_rec, notes, latitude, longitude) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)";
+      $query_params = array($updated_beach->beach_name, $updated_beach->beach_photo, $updated_beach->photo_credit, $updated_beach->access, $updated_beach->parking, $updated_beach->hours, $updated_beach->avail_rec, $updated_beach->notes, $updated_beach->latitude, $updated_beach->longitude);
+			pg_query_params($query, $query_params); //pass the query and the params to pg_query_params
       return self::all();
     }
 
@@ -77,6 +81,8 @@ class Beaches {
 					$row_object->beach_hours,
 					$row_object->beach_avail_rec,
 					$row_object->beach_notes,
+					$row_object->beach_latitude,
+					$row_object->beach_longitude,
         );
         $beaches[] = $new_beach;
         $row_object = pg_fetch_object($results);

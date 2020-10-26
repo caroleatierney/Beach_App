@@ -35,6 +35,8 @@ class App extends React.Component {
         hours:this.state.newBeach_hours,
         avail_rec:this.state.newBeach_avail_rec,
         notes:this.state.newBeach_notes,
+        latitude:this.state.newBeach_latitude,
+        longitude:this.state.newBeach_longitude,
       }
     ).then(
       (response) => {
@@ -93,6 +95,17 @@ class App extends React.Component {
     });
   }
 
+  changeNewBeachLatitude = (event) => {
+    this.setState({
+      newBeach_latitude:event.target.value
+    });
+  }
+
+  changeNewBeachLongitude = (event) => {
+    this.setState({
+      newBeach_longitude:event.target.value
+    });
+  }
   //***********************************************
   //**************** DELETE ***********************
   //***********************************************
@@ -123,6 +136,8 @@ class App extends React.Component {
         hours:this.state.updateBeach_hours,
         avail_rec:this.state.updateBeach_avail_rec,
         notes:this.state.updateBeach_notes,
+        latitude:this.state.updateBeach_latitude,
+        longitude:this.state.updateBeach_longitude,
       }
 
     ).then(
@@ -137,17 +152,62 @@ class App extends React.Component {
           hours:'',
           avail_rec:'',
           notes:'',
+          latitude:'',
+          longitude:'',
         })
       }
     )
   }
 
+  changeUpdateBeachName = (event) => {
+    this.setState({
+      updateBeach_name:event.target.value
+      })
+    }
+  changeUpdateBeachPhoto = (event) => {
+    this.setState({
+      updateBeach_photo:event.target.value
+    })
+  }
+  changeUpdateBeachPhoto_Credit = (event) => {
+    this.setState({
+      updateBeach_photo_credit:event.target.value
+    })
+  }
+  changeUpdateBeachAccess = (event) => {
+    this.setState({
+      updateBeach_access:event.target.value
+    });
+  }
+  changeUpdateBeachParking = (event) => {
+    this.setState({
+      updateBeach_parking:event.target.value
+    });
+  }
+  changeUpdateBeachHours = (event) => {
+    this.setState({
+      updateBeach_hours:event.target.value
+    });
+  }
+  changeUpdateBeachAvail_Rec = (event) => {
+    this.setState({
+      updateBeach_avail_rec:event.target.value
+    });
+  }
   changeUpdateBeachNotes = (event) => {
-    this.setState(
-      {
-        updateBeach_notes:event.target.value
-      }
-    )
+    this.setState({
+      updateBeach_notes:event.target.value
+    });
+  }
+  changeUpdateBeachLatitude = (event) => {
+    this.setState({
+      updateBeach_latitude:event.target.value
+    });
+  }
+  changeUpdateBeachLongitude = (event) => {
+    this.setState({
+      updateBeach_longitude:event.target.value
+    });
   }
 
   render = () => {
@@ -193,7 +253,6 @@ class App extends React.Component {
           <div className="column is-two-thirds">
               <h1 className="title">Welcome Marshfield Beachgoers!</h1>
               <h2>Below is your Beach bucket list - Please update your vote!</h2>
-              <h2><i className="title fas fa-thumbs-up"></i><i className="title fas fa-thumbs-down"></i></h2>
 
               {/* create beach */}
               <details>
@@ -209,6 +268,8 @@ class App extends React.Component {
                         <input onKeyUp={this.changeNewBeachHours} type='text' placeholder='hours' /><br/>
                         <input onKeyUp={this.changeNewBeachAvail_Rec} type='text' placeholder='available recreation' /><br/>
                         <textarea onKeyUp={this.changeNewBeachNotes} placeholder='notes' ></textarea><br/>
+                        <input onKeyUp={this.changeNewBeachLatitude} type='number' step="0.001" placeholder='latitude' /><br/>
+                        <input onKeyUp={this.changeNewBeachLongitude} type='number' step="0.001" placeholder='longitude' /><br/>
                         <input type="submit" value="Create new discovered private Beach!" />
                       </form>
                     </div>
@@ -233,12 +294,15 @@ class App extends React.Component {
                   var save_parking=beach.parking
                   var save_hours=beach.hours
                   var save_avail_rec=beach.avail_rec
+                  var save_latitude=beach.latitude
+                  var save_longitude=beach.longitude
 
                   return <li key={index}>
                     <div className="columns">
 
                       {/* beach photo} */}
                       <div className="column">
+                        <h1>{beach.name}</h1>
                         <img src={beach.photo}/>
                         <h3>photo credit: {beach.photo_credit}</h3>
                       </div>
@@ -251,6 +315,11 @@ class App extends React.Component {
                             <div className="card-content is-vcentered has-text-centered">
                               <p className="title">Beach Notes</p>
                               <p className="title">{beach.notes}</p>
+
+                              <div className="title is-centered">
+                                <h2><i className="title fas fa-thumbs-up"></i><i className="title fas fa-thumbs-down"></i></h2>
+                              </div>
+
                             </div>
 
                             {/* card footer */}
@@ -263,7 +332,7 @@ class App extends React.Component {
                                   <div className="card">
                                     <div className="card-content">
                                       <form id={beach.id} onSubmit={this.updateBeach}>
-                                      <input onKeyUp={this.changeUpdateBeachName} type='text'  default='name' /><br/>
+                                      <input onKeyUp={this.changeUpdateBeachName} type='text'  placeholder='name' /><br/>
                                       <input onKeyUp={this.changeUpdateBeachPhoto} type='text' placeholder='photo' /><br/>
                                       <input onKeyUp={this.changeUpdateBeachPhoto_Credit} type='text' placeholder='photo credit' /><br/>
                                       <input onKeyUp={this.changeUpdateBeachAccess} type='text' placeholder='access' /><br/>
@@ -271,6 +340,8 @@ class App extends React.Component {
                                       <input onKeyUp={this.changeUpdateBeachHours} type='text' placeholder='hours' /><br/>
                                       <input onKeyUp={this.changeUpdateBeachAvail_Rec} type='text' placeholder='available recreation' /><br/>
                                       <textarea onKeyUp={this.changeUpdateBeachNotes} defaultValue={beach.notes}></textarea><br/>
+                                      <input onKeyUp={this.changeUpdateBeachLatitude} type='number' step="0.001" placeholder='latitude' /><br/>
+                                      <input onKeyUp={this.changeUpdateBeachLongitude} type='number' step="0.001"  placeholder='longitude' /><br/>
                                       <input type="submit" value="Update Beach Notes!" />
                                       </form>
                                     </div>
@@ -283,25 +354,50 @@ class App extends React.Component {
                                   <div className="card is-vcentered has-text-centered is-flex-wrap-wrap">
                                     <div className="card-header">
                                       <div className="card-title">
-                                        <p> things to do at {beach.name}</p>    {/* beach undefined */}
+                                        <p> things to do at {beach.name}</p>
                                       </div>
                                     </div>
                                     <div className="card-content is-align-items-center">  {/* flexbox properties not working */}
-                                      <span className="icon">
-                                        <i className="/public/mycollection/png/001-swimming.png"></i>
-                                        <i className="park_896059"></i>
-                                        <i className="fas fa-home"></i>
-                                        <i className="fas fa-home"></i>
-                                        <i className="fas fa-home"></i>
-                                        <i className="fas fa-home"></i>
-                                        <i className="fas fa-home"></i>
-                                        <i className="fas fa-home"></i>
+
+                                      <span className="icon is-flex-direction-row  is-justify-content-space-evenly">
+                                        <img src="https://i.imgur.com/FAOW8rW.png"/>
+                                        <img src="https://i.imgur.com/boTxmLr.png"/>
+                                        <img src="https://i.imgur.com/EJwnOgi.png"/>
+                                        <img src="https://i.imgur.com/Sovm9sB.png"/>
+                                        <img src="https://i.imgur.com/gSIFxt4.png"/>
+                                        <img src="https://i.imgur.com/huyrFri.png"/>
+                                        <img src="https://i.imgur.com/bPvVrcT.png"/>
+                                        <img src="https://i.imgur.com/JlPzFny.png"/>
+                                        <img src="https://i.imgur.com/MA74rCS.png"/>
                                       </span>
                                     </div>
+
                                     <footer className="card-footer is-align-content-space-between">
-                                      <button value={beach.id} >hours</button>
-                                      <button value={beach.id} >parking</button>
-                                      <button value={beach.id} >tides</button>
+                                      {/* hours */}
+                                      <details>
+                                        <summary><button value={beach.id} >hours</button></summary>
+                                        <div className="card-content">
+                                          <p> {beach.hours}</p>
+                                        </div>
+                                      </details>
+
+                                      {/* parking */}
+                                      <details>
+                                        <summary><button value={beach.id} >parking</button></summary>
+                                        <div className="card-content">
+                                          <p> {beach.parking}</p>
+                                        </div>
+                                      </details>
+
+                                      {/* tides */}
+                                      <details>
+                                        <summary><button value={beach.id} >tides</button></summary>
+                                        <div className="card-content">
+                                          <p> {beach.latitude}</p>
+                                          <p> {beach.longitude}</p>
+                                        </div>
+                                      </details>
+
                                     </footer>
                                   </div>
                                 </details>

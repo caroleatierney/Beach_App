@@ -10,7 +10,9 @@ CREATE TABLE beaches
   photo_credit VARCHAR(40),
   access VARCHAR(10),
   parking VARCHAR(150),
-  hours VARCHAR(60),
+  hours VARCHAR(200),
   avail_rec VARCHAR(200),
-  notes VARCHAR(200)
+  notes VARCHAR(200),
+  latitude NUMERIC(7,3),
+  longitude NUMERIC(7,3)
 );

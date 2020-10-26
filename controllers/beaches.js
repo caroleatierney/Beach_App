@@ -26,7 +26,7 @@ router.post('/', (req , res) => {
 
   postgres.query
   (
-  `INSERT INTO beaches (name, photo, photo_credit, access, parking, hours, avail_rec, notes)
+  `INSERT INTO beaches (name, photo, photo_credit, access, parking, hours, avail_rec, notes, latitude, longitude)
     VALUES
     (
     '${req.body.name}',
@@ -36,7 +36,9 @@ router.post('/', (req , res) => {
     '${req.body.parking}',
     '${req.body.hours}',
     '${req.body.avail_rec}',
-    '${req.body.notes}'
+    '${req.body.notes}',
+    '${req.body.latitude}',
+    '${req.body.longitude}'
     )
   `,
     (err, results) => {
@@ -71,7 +73,7 @@ router.delete('/:id', (req , res) => {
 // ==================================================
 router.put('/:id', (req, res) => {
 
-  // console.log("update/put-res", req.params.id)
+  console.log("update/put-res", req.params.id, req.body)
 
   postgres.query(`
     UPDATE beaches
@@ -84,7 +86,9 @@ router.put('/:id', (req, res) => {
     parking='${req.body.parking}',
     hours='${req.body.hours}',
     avail_rec='${req.body.avail_rec}',
-    notes='${req.body.notes}'
+    notes='${req.body.notes}',
+    latitude='${req.body.latitude}',
+    longitude='${req.body.longitude}'
 
     WHERE id = ${req.params.id};`,
     (err, results) => {
