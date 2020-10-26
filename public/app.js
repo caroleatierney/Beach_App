@@ -280,10 +280,29 @@ class App extends React.Component {
                                 {/* more information */}
                                 <details>
                                   <summary><button value={beach.id} >more information</button></summary>
-                                  <div className="card">
-                                    <div className="card-content">
-                                      <button value={beach.id} >more information</button>
+                                  <div className="card is-vcentered has-text-centered is-flex-wrap-wrap">
+                                    <div className="card-header">
+                                      <div className="card-title">
+                                        <p> things to do at {beach.name}</p>    {/* beach undefined */}
+                                      </div>
                                     </div>
+                                    <div className="card-content is-align-items-center">  {/* flexbox properties not working */}
+                                      <span className="icon">
+                                        <i className="/public/mycollection/png/001-swimming.png"></i>
+                                        <i className="park_896059"></i>
+                                        <i className="fas fa-home"></i>
+                                        <i className="fas fa-home"></i>
+                                        <i className="fas fa-home"></i>
+                                        <i className="fas fa-home"></i>
+                                        <i className="fas fa-home"></i>
+                                        <i className="fas fa-home"></i>
+                                      </span>
+                                    </div>
+                                    <footer className="card-footer is-align-content-space-between">
+                                      <button value={beach.id} >hours</button>
+                                      <button value={beach.id} >parking</button>
+                                      <button value={beach.id} >tides</button>
+                                    </footer>
                                   </div>
                                 </details>
                             </footer>
@@ -300,9 +319,8 @@ class App extends React.Component {
       {/* page footer */}
       <footer className="footer">
         <div className="content has-text-centered">
-          <p>
-            <strong> catZwebZ 2020 </strong>
-          </p>
+            <p><strong> catZwebZ 2020 </strong></p>
+            <div>Icons made by <a href="https://www.flaticon.local/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.local/" title="Flaticon">www.flaticon.local</a></div>
         </div>
       </footer>
     </div>
@@ -314,3 +332,13 @@ ReactDOM.render(
     <App></App>,
     document.querySelector('main')
 )
+
+
+// name:save_name,
+// photo:save_beach_photo,
+// photo_credit:save_beach_photo_credit,
+// access:save_access,
+// parking:save_parking,
+// hours:save_hours,
+// avail_rec:save_avail_rec,
+// notes:this.state.updateBeach_notes,
