@@ -19,6 +19,28 @@ class App extends React.Component {
   }
 
   //***********************************************
+  //**************** GET TIDES ********************
+  //***********************************************
+  getTides = (event) => {
+    fetch("https://tides.p.rapidapi.com/tides?interval=60&duration=1440&latitude=44.414&longitude=-2.097", {
+    	"method": "GET",
+    	"headers": {
+    		"x-rapidapi-host": "tides.p.rapidapi.com",
+    		"x-rapidapi-key": "72f2d4d192mshd7feaecf8ffd802p140faajsna045792ab384"
+    	}
+    })
+    .then(response => {
+    	console.log(response);
+      response.json;
+      console.log(response.json);
+      console.log("in response");
+    })
+    .catch(err => {
+    	console.log(err);
+    });
+  }
+
+  //***********************************************
   //**************** CREATE ***********************
   //***********************************************
 
@@ -252,7 +274,7 @@ class App extends React.Component {
             </div>
           <div className="column is-two-thirds">
               <h1 className="title">Welcome Marshfield Beachgoers!</h1>
-              <h2>Below is your Beach bucket list - Please update your vote!</h2>
+              <h2>Below is your Beach Bucket list - Please update your vote!</h2>
 
               {/* create beach */}
               <details>
@@ -279,9 +301,11 @@ class App extends React.Component {
           </div>
         </section>
 
-        {/* beach list */}
+        {/* beach list main container */}
         <div className="container">
-          <h2> List of Marshfield Beaches </h2>
+          {/* beach list CRUD container */}
+          <div className="container">
+            <h2> List of Marshfield Beaches </h2>
             <ul>
               {
                 this.state.beaches.map((beach, index) => {
@@ -315,107 +339,115 @@ class App extends React.Component {
                             <div className="card-content is-vcentered has-text-centered">
                               <p className="title">Beach Notes</p>
                               <p className="title">{beach.notes}</p>
-
                               <div className="title is-centered">
                                 <h2><i className="title fas fa-thumbs-up"></i><i className="title fas fa-thumbs-down"></i></h2>
                               </div>
-
                             </div>
 
                             {/* card footer */}
                             <footer className="card-footer">
                               <p className="card-footer-item"></p>
-                                <button value={beach.id} onClick={this.deleteBeach}>delete beach</button>
-                                {/* edit newBeach_notes */}
-                                <details>
-                                  <summary><button value={beach.id} >edit notes</button></summary>
-                                  <div className="card">
-                                    <div className="card-content">
-                                      <form id={beach.id} onSubmit={this.updateBeach}>
-                                      <input onKeyUp={this.changeUpdateBeachName} type='text'  placeholder='name' /><br/>
-                                      <input onKeyUp={this.changeUpdateBeachPhoto} type='text' placeholder='photo' /><br/>
-                                      <input onKeyUp={this.changeUpdateBeachPhoto_Credit} type='text' placeholder='photo credit' /><br/>
-                                      <input onKeyUp={this.changeUpdateBeachAccess} type='text' placeholder='access' /><br/>
-                                      <input onKeyUp={this.changeUpdateBeachParking} type='text' placeholder='parking' /><br/>
-                                      <input onKeyUp={this.changeUpdateBeachHours} type='text' placeholder='hours' /><br/>
-                                      <input onKeyUp={this.changeUpdateBeachAvail_Rec} type='text' placeholder='available recreation' /><br/>
-                                      <textarea onKeyUp={this.changeUpdateBeachNotes} defaultValue={beach.notes}></textarea><br/>
-                                      <input onKeyUp={this.changeUpdateBeachLatitude} type='number' step="0.001" placeholder='latitude' /><br/>
-                                      <input onKeyUp={this.changeUpdateBeachLongitude} type='number' step="0.001"  placeholder='longitude' /><br/>
-                                      <input type="submit" value="Update Beach Notes!" />
-                                      </form>
-                                    </div>
+                              <button value={beach.id} onClick={this.deleteBeach}>delete beach</button>
+                              {/* edit newBeach_notes */}
+                              <details>
+                                <summary><button value={beach.id} >edit notes</button></summary>
+                                <div className="card">
+                                  <div className="card-content">
+                                    <form id={beach.id} onSubmit={this.updateBeach}>
+                                    <input onKeyUp={this.changeUpdateBeachName} type='text'  placeholder='name' /><br/>
+                                    <input onKeyUp={this.changeUpdateBeachPhoto} type='text' placeholder='photo' /><br/>
+                                    <input onKeyUp={this.changeUpdateBeachPhoto_Credit} type='text' placeholder='photo credit' /><br/>
+                                    <input onKeyUp={this.changeUpdateBeachAccess} type='text' placeholder='access' /><br/>
+                                    <input onKeyUp={this.changeUpdateBeachParking} type='text' placeholder='parking' /><br/>
+                                    <input onKeyUp={this.changeUpdateBeachHours} type='text' placeholder='hours' /><br/>
+                                    <input onKeyUp={this.changeUpdateBeachAvail_Rec} type='text' placeholder='available recreation' /><br/>
+                                    <textarea onKeyUp={this.changeUpdateBeachNotes} defaultValue={beach.notes}></textarea><br/>
+                                    <input onKeyUp={this.changeUpdateBeachLatitude} type='number' step="0.001" placeholder='latitude' /><br/>
+                                    <input onKeyUp={this.changeUpdateBeachLongitude} type='number' step="0.001"  placeholder='longitude' /><br/>
+                                    <input type="submit" value="Update Beach Notes!" />
+                                    </form>
                                   </div>
-                                </details>
-
-                                {/* more information */}
-                                <details>
-                                  <summary><button value={beach.id} >more information</button></summary>
-                                  <div className="card is-vcentered has-text-centered is-flex-wrap-wrap">
-                                    <div className="card-header">
-                                      <div className="card-title">
-                                        <p> things to do at {beach.name}</p>
-                                      </div>
-                                    </div>
-                                    <div className="card-content is-align-items-center">  {/* flexbox properties not working */}
-
-                                      <span className="icon is-flex-direction-row  is-justify-content-space-evenly">
-                                        <img src="https://i.imgur.com/FAOW8rW.png"/>
-                                        <img src="https://i.imgur.com/boTxmLr.png"/>
-                                        <img src="https://i.imgur.com/EJwnOgi.png"/>
-                                        <img src="https://i.imgur.com/Sovm9sB.png"/>
-                                        <img src="https://i.imgur.com/gSIFxt4.png"/>
-                                        <img src="https://i.imgur.com/huyrFri.png"/>
-                                        <img src="https://i.imgur.com/bPvVrcT.png"/>
-                                        <img src="https://i.imgur.com/JlPzFny.png"/>
-                                        <img src="https://i.imgur.com/MA74rCS.png"/>
-                                      </span>
-                                    </div>
-
-                                    <footer className="card-footer is-align-content-space-between">
-                                      {/* hours */}
-                                      <details>
-                                        <summary><button value={beach.id} >hours</button></summary>
-                                        <div className="card-content">
-                                          <p> {beach.hours}</p>
-                                        </div>
-                                      </details>
-
-                                      {/* parking */}
-                                      <details>
-                                        <summary><button value={beach.id} >parking</button></summary>
-                                        <div className="card-content">
-                                          <p> {beach.parking}</p>
-                                        </div>
-                                      </details>
-
-                                      {/* tides */}
-                                      <details>
-                                        <summary><button value={beach.id} >tides</button></summary>
-                                        <div className="card-content">
-                                          <p> {beach.latitude}</p>
-                                          <p> {beach.longitude}</p>
-                                        </div>
-                                      </details>
-
-                                    </footer>
-                                  </div>
-                                </details>
+                                </div>
+                              </details>
                             </footer>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </li>
-                })
-              }
-            </ul>
-        </div>
+
+                    {/* beach list container to add more info under CRUD container */}
+                    <div className="container">
+                      <details>
+                        <summary><button value={beach.id}>more information</button></summary>
+                        <div className="card is-vcentered has-text-centered is-flex-wrap-wrap">
+                          <div className="card-header">
+                            <div className="card-title">
+                              <p> things to do at {beach.name}</p>
+                            </div>
+                          </div>
+                          <div className="card-content is-align-items-center">  {/* flexbox properties not working */}
+                            <span className="icon is-flex-direction-row  is-justify-content-space-evenly">
+                              <img src="https://i.imgur.com/FAOW8rW.png"/>
+                              <img src="https://i.imgur.com/boTxmLr.png"/>
+                              <img src="https://i.imgur.com/EJwnOgi.png"/>
+                              <img src="https://i.imgur.com/Sovm9sB.png"/>
+                              <img src="https://i.imgur.com/gSIFxt4.png"/>
+                              <img src="https://i.imgur.com/huyrFri.png"/>
+                              <img src="https://i.imgur.com/bPvVrcT.png"/>
+                              <img src="https://i.imgur.com/JlPzFny.png"/>
+                              <img src="https://i.imgur.com/MA74rCS.png"/>
+                            </span>
+                          </div>
+
+                          <footer className="card-footer is-align-content-space-between">
+                            {/* hours */}
+                            <details>
+                              <summary><button value={beach.id} >hours</button></summary>
+                              <div className="card-content">
+                                <p> {beach.hours}</p>
+                              </div>
+                            </details>
+
+                            {/* parking */}
+                            <details>
+                              <summary><button value={beach.id} >parking</button></summary>
+                              <div className="card-content">
+                                <p> {beach.parking}</p>
+                              </div>
+                            </details>
+
+                            {/* tides */}
+                            <details>
+                            <summary><button value={beach.id} onClick={this.getTides} >tides</button></summary>
+                              <div className="card-content">
+                                <p> {beach.latitude}</p>
+                                <p> {beach.longitude}</p>
+                                <p> </p>
+
+                              </div>
+                            </details>
+                          </footer>
+                        </div>
+                      </details>
+                    </div>
+                </li>
+              })
+            }
+          </ul>
+      </div>
+    </div>
 
       {/* page footer */}
       <footer className="footer">
         <div className="content has-text-centered">
-            <p><strong> catZwebZ 2020 </strong></p>
+            <p><strong> catZwebZ 2020
+
+            <a href="h#"><i className="fab fa-facebook-square fa-3x fa-fw"></i></a>
+            <a href="#" target="_top"><i className="fas fa-envelope fa-3x fa-fw" target="_blank"></i></a>
+            <a href="#" target="_blank"><i className="fab fa-instagram-square fa-3x fa-fw"></i></a>
+            <a href="#" target="_blank"><i className="fab fa-twitter-square fa-3x fa-fw"></i></a>
+
+            </strong></p>
             <div>Icons made by <a href="https://www.flaticon.local/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.local/" title="Flaticon">www.flaticon.local</a></div>
         </div>
       </footer>
@@ -425,8 +457,8 @@ class App extends React.Component {
 }
 
 ReactDOM.render(
-    <App></App>,
-    document.querySelector('main')
+  <App></App>,
+  document.querySelector('main')
 )
 
 
