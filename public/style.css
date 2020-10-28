@@ -1,7 +1,45 @@
+:root {
+  --slate-blue-light:#7798c2;
+  --dark-brown:#37312f;
+  --mushroom: #807b75;
+  --sand:#dad3c7;
+  --sky-blue:#67a2ef;
+  --light-grey:#a7b0b8;
+  --charcoal:#4b4b55;
+  --cdark-slate:#2f465f;
+  --army-brown:#9d6a41;
+  --powder-blue:#8bccfb;
+  --medium-slate-blue:#5c71a0;
+}
+
+html {
+  overflow-y: visible;
+}
+
 * {
-  border: 2px solid gold;
+  /* border: 2px solid gold; */
+}
+
+.navbar {
+  background-color: var(--sky-blue);
 }
 
 body {
-  font-family: 'Henny Penny', cursive;
+  font-family: 'Liu Jian Mao Cao', cursive;
+  /* background-color: var(--sand); */
+}
+
+.photo-section {
+  color: #9d6a41;
+  /* background-color: var(--sand); */
+}
+
+.notes-section .todo-card .card.header .card-title .card {
+  /* background-color: var(--sand); */
+}
+
+.icon {
+  width: 100%;
+  justify-content: center;
+  /* background-color: var(--sand); */
 }

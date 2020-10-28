@@ -1,5 +1,11 @@
+var hours=''
+var hoursArray=[]
+
+var beachLat = " "
+var beachLong = " "
+
 //***********************************************
-//*************** front end ********************
+//*************** front end *********************
 //***********************************************
 //********* sends the request back end  *********
 //***********************************************
@@ -22,22 +28,54 @@ class App extends React.Component {
   //**************** GET TIDES ********************
   //***********************************************
   getTides = (event) => {
-    fetch("https://tides.p.rapidapi.com/tides?interval=60&duration=1440&latitude=44.414&longitude=-2.097", {
+
+    // fetch("https://tides.p.rapidapi.com/tides?latitude=" + "this.state.latitude" + "&longitude=" + "this.state.longitude", {
+    // fetch("https://tides.p.rapidapi.com/tides?latitude=" + "this.beach.latitude" + "&longitude=" + "this.beach.longitude", {
+    // fetch("https://tides.p.rapidapi.com/tides?latitude=" + "beach.latitude" + "&longitude=" + "beach.longitude", {
+    // fetch("https://tides.p.rapidapi.com/tides?latitude=" + "beachLat" + "&longitude=" + "beachLong", {
+
+    // console.log(beach.latitude);
+
+      fetch("https://tides.p.rapidapi.com/tides?latitude=42.414&longitude=-70.677", {
     	"method": "GET",
     	"headers": {
     		"x-rapidapi-host": "tides.p.rapidapi.com",
     		"x-rapidapi-key": "72f2d4d192mshd7feaecf8ffd802p140faajsna045792ab384"
     	}
     })
-    .then(response => {
-    	console.log(response);
-      response.json;
-      console.log(response.json);
-      console.log("in response");
+    .then
+
+    ((data) => {
+      // need to convert to JSON
+      const json=data.json();
+      console.log(json);
+      // console.log(data.copyright);
+      return json;
+
+      // console.log(JSON.parse(data));
+      // this.setState(
+        // {
+          // highTide1:json.data.extremes[0].timestamp,
+        // }
+      // )
+      // console.log(highTide1);
+      // console.log(json.data.extremes[0].timestamp);
     })
+
     .catch(err => {
     	console.log(err);
     });
+  }
+
+  //***********************************************
+  //**************** GET TIDES ********************
+  //***********************************************
+  getHours = (event) => {
+    hours = this.state.beaches.hours;
+    hoursArray=hours.split(",");
+    for (var i = 0; i < hoursArray.length; i++) {
+      console.log(hoursArray[i]);
+    }
   }
 
   //***********************************************
@@ -236,7 +274,7 @@ class App extends React.Component {
     return <div>
       <div className="container">
 
-        <nav className="navbar is-transparent" role="navigation" aria-label="main navigation">
+        <nav className="navbar" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
             <a className="navbar-item" href="https://bulma.io">
               <img src="https://i.imgur.com/kWKYRa8.jpg"/>
@@ -325,7 +363,7 @@ class App extends React.Component {
                     <div className="columns">
 
                       {/* beach photo} */}
-                      <div className="column">
+                      <div className="column photo-section">
                         <h1>{beach.name}</h1>
                         <img src={beach.photo}/>
                         <h3>photo credit: {beach.photo_credit}</h3>
@@ -333,9 +371,9 @@ class App extends React.Component {
 
                       {/* beach card */}
                       {/* show beach notes with button links*/}
-                      <div className="column is-multiline">
-                        <div className="column">
-                          <div className="card">
+                      <div className="column is-multiline notes-section">
+                        <div className="column notes-section">
+                          <div className="card notes-section">
                             <div className="card-content is-vcentered has-text-centered">
                               <p className="title">Beach Notes</p>
                               <p className="title">{beach.notes}</p>
@@ -379,14 +417,14 @@ class App extends React.Component {
                     <div className="container">
                       <details>
                         <summary><button value={beach.id}>more information</button></summary>
-                        <div className="card is-vcentered has-text-centered is-flex-wrap-wrap">
+                        <div className="card todo-card is-vcentered has-text-centered is-flex-wrap-wrap">
                           <div className="card-header">
                             <div className="card-title">
                               <p> things to do at {beach.name}</p>
                             </div>
                           </div>
                           <div className="card-content is-align-items-center">  {/* flexbox properties not working */}
-                            <span className="icon is-flex-direction-row  is-justify-content-space-evenly">
+                            <span className="icon is-flex-direction-row is-justify-content-space-evenly">
                               <img src="https://i.imgur.com/FAOW8rW.png"/>
                               <img src="https://i.imgur.com/boTxmLr.png"/>
                               <img src="https://i.imgur.com/EJwnOgi.png"/>
@@ -402,9 +440,12 @@ class App extends React.Component {
                           <footer className="card-footer is-align-content-space-between">
                             {/* hours */}
                             <details>
-                              <summary><button value={beach.id} >hours</button></summary>
+                              <summary><button value={beach.id} onClick={this.getHours}>hours</button></summary>
                               <div className="card-content">
-                                <p> {beach.hours}</p>
+
+
+                                <p>beach.hours</p>
+
                               </div>
                             </details>
 
@@ -470,3 +511,10 @@ ReactDOM.render(
 // hours:save_hours,
 // avail_rec:save_avail_rec,
 // notes:this.state.updateBeach_notes,
+//    fetch("https://tides.p.rapidapi.com/tides?interval=60&duration=1440&latitude=44.414&longitude=-2.097", {
+    	// "method": "GET",
+    	// "headers": {
+    		// "x-rapidapi-host": "tides.p.rapidapi.com",
+    		// "x-rapidapi-key": "72f2d4d192mshd7feaecf8ffd802p140faajsna045792ab384"
+    	// }
+    // })
