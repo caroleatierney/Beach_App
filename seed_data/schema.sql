@@ -11,7 +11,7 @@ CREATE TABLE beaches
   access VARCHAR(10),
   parking VARCHAR(150),
   hours VARCHAR(200),
-  avail_rec VARCHAR(200),
+  avail_rec VARCHAR(400),
   notes VARCHAR(200),
   latitude NUMERIC(7,3),
   longitude NUMERIC(7,3)

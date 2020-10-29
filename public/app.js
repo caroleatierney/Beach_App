@@ -1,3 +1,6 @@
+var rec=''
+var recArray=[]
+
 var hours=''
 var hoursArray=[]
 
@@ -27,14 +30,14 @@ var lowHeight2 = ''
 //***********************************************
 class App extends React.Component {
   state = {
-    beaches:[]
+    beaches:[],
   }
 
   componentDidMount = () => {
     axios.get('/beaches').then(
       (response) => {
         this.setState({
-          beaches:response.data
+          beaches:response.data,
         })
       }
     )
@@ -86,33 +89,6 @@ class App extends React.Component {
     .catch(err => {
     	console.log(err);
     });
-  }
-
-  //***********************************************
-  //**************** GET PARKING ********************
-  //***********************************************
-  getParking = (event) => {
-    console.log(this.state.beachParking);
-
-    parking = this.state.beachParking;
-    parkingArray=parking.split(",");
-
-
-    for (var i = 0; i < parkingArray.length; i++) {
-      console.log(parkingArray[i]);
-    }
-  }
-
-  //***********************************************
-  //**************** GET TIDES ********************
-  //***********************************************
-  getHours = (event) => {
-    console.log(this.state.beachHours);
-    hours = this.state.beachHours;
-    hoursArray=hours.split(",");
-    for (var i = 0; i < hoursArray.length; i++) {
-      console.log(hoursArray[i]);
-    }
   }
 
   //***********************************************
@@ -398,8 +374,16 @@ class App extends React.Component {
 
                   this.state.lat=beach.latitude
                   this.state.long=beach.longitude
-                  this.state.beachHours=beach.hours
-                  this.state.beachParking=beach.parking
+
+                  {/* turn parking, todo, hour and photos into an array */}
+                  parking = beach.parking
+                  parkingArray=parking.split(",")
+                  hours = beach.hours
+                  hoursArray=hours.split(",")
+                  rec = beach.avail_rec
+                  recArray=rec.split(",")
+
+                  console.log(recArray[0])
 
                   return <li key={index}>
                     <div className="columns">
@@ -467,15 +451,9 @@ class App extends React.Component {
                           </div>
                           <div className="card-content is-align-items-center">  {/* flexbox properties not working */}
                             <span className="icon is-flex-direction-row is-justify-content-space-evenly">
-                              <img src="https://i.imgur.com/FAOW8rW.png"/>
-                              <img src="https://i.imgur.com/boTxmLr.png"/>
-                              <img src="https://i.imgur.com/EJwnOgi.png"/>
-                              <img src="https://i.imgur.com/Sovm9sB.png"/>
-                              <img src="https://i.imgur.com/gSIFxt4.png"/>
-                              <img src="https://i.imgur.com/huyrFri.png"/>
-                              <img src="https://i.imgur.com/bPvVrcT.png"/>
-                              <img src="https://i.imgur.com/JlPzFny.png"/>
-                              <img src="https://i.imgur.com/MA74rCS.png"/>
+                              {recArray.map(recInfo => (
+                                <img src={recInfo}/>
+                              ))}
                             </span>
                           </div>
 
@@ -484,17 +462,23 @@ class App extends React.Component {
                             <details>
                               <summary><button value={beach.id} onClick={this.getHours}>hours</button></summary>
                               <div className="card-content">
-                                <p>beach.hours</p>
+                              <ul>
+                                {hoursArray.map(hoursInfo => (
+                                  <li>{hoursInfo}</li>
+                                ))}
+                              </ul>
                               </div>
                             </details>
 
                             {/* parking */}
                             <details>
-                              <summary><button value={beach.id} onClick={this.getParking} >parking</button></summary>
-                              <div className="card-content">
-                                this.state.parkingArray.map((parking, index) => {
-                                <p> parking</p>
-                              }
+                              <summary><button value={beach.id} >parking</button></summary>
+                                <div className='card-content'>
+                                  <ul>
+                                    {parkingArray.map(parkingInfo => (
+                                      <li>{parkingInfo}</li>
+                                    ))}
+                                  </ul>
                               </div>
                             </details>
 
@@ -554,10 +538,21 @@ ReactDOM.render(
 // hours:save_hours,
 // avail_rec:save_avail_rec,
 // notes:this.state.updateBeach_notes,
-//    fetch("https://tides.p.rapidapi.com/tides?interval=60&duration=1440&latitude=44.414&longitude=-2.097", {
-    	// "method": "GET",
-    	// "headers": {
-    		// "x-rapidapi-host": "tides.p.rapidapi.com",
-    		// "x-rapidapi-key": "72f2d4d192mshd7feaecf8ffd802p140faajsna045792ab384"
-    	// }
-    // })
+
+
+    // console.log(this.state.beachParking);
+    // console.log(this.state.beaches);
+    // console.log(parkingArray);
+
+
+    // <span className="icon is-flex-direction-row is-justify-content-space-evenly">
+      // <img src="https://i.imgur.com/FAOW8rW.png"/>
+      // <img src="https://i.imgur.com/boTxmLr.png"/>
+      // <img src="https://i.imgur.com/EJwnOgi.png"/>
+      // <img src="https://i.imgur.com/Sovm9sB.png"/>
+      // <img src="https://i.imgur.com/gSIFxt4.png"/>
+      // <img src="https://i.imgur.com/huyrFri.png"/>
+      // <img src="https://i.imgur.com/bPvVrcT.png"/>
+      // <img src="https://i.imgur.com/JlPzFny.png"/>
+      // <img src="https://i.imgur.com/MA74rCS.png"/>
+    // </span>
