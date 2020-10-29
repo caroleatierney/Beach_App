@@ -1,8 +1,24 @@
 var hours=''
 var hoursArray=[]
 
-var beachLat = " "
-var beachLong = " "
+var parking=''
+var parkingArray=[]
+
+var high1 = ''
+var highTime1 = ''
+var highHeight1 = ''
+
+var low1 = ''
+var lowTime1 = ''
+var lowHeight1 = ''
+
+var high2 = ''
+var highTime2 = ''
+var lowHeight2 = ''
+
+var low2 = ''
+var lowTime2 = ''
+var lowHeight2 = ''
 
 //***********************************************
 //*************** front end *********************
@@ -29,37 +45,42 @@ class App extends React.Component {
   //***********************************************
   getTides = (event) => {
 
-    // fetch("https://tides.p.rapidapi.com/tides?latitude=" + "this.state.latitude" + "&longitude=" + "this.state.longitude", {
-    // fetch("https://tides.p.rapidapi.com/tides?latitude=" + "this.beach.latitude" + "&longitude=" + "this.beach.longitude", {
-    // fetch("https://tides.p.rapidapi.com/tides?latitude=" + "beach.latitude" + "&longitude=" + "beach.longitude", {
-    // fetch("https://tides.p.rapidapi.com/tides?latitude=" + "beachLat" + "&longitude=" + "beachLong", {
+    // console.log(this.state.lat);
+    // console.log(this.state.long);
 
-    // console.log(beach.latitude);
-
-      fetch("https://tides.p.rapidapi.com/tides?latitude=42.414&longitude=-70.677", {
+      fetch("https://tides.p.rapidapi.com/tides?latitude=" + this.state.lat + "&longitude=" + this.state.long, {
     	"method": "GET",
     	"headers": {
     		"x-rapidapi-host": "tides.p.rapidapi.com",
     		"x-rapidapi-key": "72f2d4d192mshd7feaecf8ffd802p140faajsna045792ab384"
     	}
     })
-    .then
+    .then (response => response.json())
+      .then(data => {
+      console.log(data);
+      // console.log(data.extremes);
+      // console.log(data.extremes[0].datetime);
 
-    ((data) => {
-      // need to convert to JSON
-      const json=data.json();
-      console.log(json);
-      // console.log(data.copyright);
-      return json;
+      this.setState(
+        {
+        high1:data.extremes[0].state,
+        low1:data.extremes[1].state,
+        high2:data.extremes[2].state,
+        low2:data.extremes[3].state,
 
-      // console.log(JSON.parse(data));
-      // this.setState(
-        // {
-          // highTide1:json.data.extremes[0].timestamp,
-        // }
-      // )
-      // console.log(highTide1);
-      // console.log(json.data.extremes[0].timestamp);
+        highTime1:data.extremes[0].datetime,
+        lowTime1:data.extremes[1].datetime,
+        highTime2:data.extremes[2].datetime,
+        lowTime2:data.extremes[3].datetime,
+
+        highHeight1:data.extremes[0].datetime,
+        lowHeight1:data.extremes[1].datetime,
+        highHeight2:data.extremes[2].datetime,
+        lowHeight2:data.extremes[3].datetime,
+        }
+      )
+
+      return data;
     })
 
     .catch(err => {
@@ -68,10 +89,26 @@ class App extends React.Component {
   }
 
   //***********************************************
+  //**************** GET PARKING ********************
+  //***********************************************
+  getParking = (event) => {
+    console.log(this.state.beachParking);
+
+    parking = this.state.beachParking;
+    parkingArray=parking.split(",");
+
+
+    for (var i = 0; i < parkingArray.length; i++) {
+      console.log(parkingArray[i]);
+    }
+  }
+
+  //***********************************************
   //**************** GET TIDES ********************
   //***********************************************
   getHours = (event) => {
-    hours = this.state.beaches.hours;
+    console.log(this.state.beachHours);
+    hours = this.state.beachHours;
     hoursArray=hours.split(",");
     for (var i = 0; i < hoursArray.length; i++) {
       console.log(hoursArray[i]);
@@ -348,7 +385,7 @@ class App extends React.Component {
               {
                 this.state.beaches.map((beach, index) => {
 
-                  {/* save all fields this.state-notes is only field being updated */}
+                  {/* save all fields this.state.notes is the only field allowed to be updated */}
                   var save_name=beach.name
                   var save_beach_photo=beach.photo
                   var save_beach_photo_credit=beach.photo_credit
@@ -358,6 +395,11 @@ class App extends React.Component {
                   var save_avail_rec=beach.avail_rec
                   var save_latitude=beach.latitude
                   var save_longitude=beach.longitude
+
+                  this.state.lat=beach.latitude
+                  this.state.long=beach.longitude
+                  this.state.beachHours=beach.hours
+                  this.state.beachParking=beach.parking
 
                   return <li key={index}>
                     <div className="columns">
@@ -442,18 +484,17 @@ class App extends React.Component {
                             <details>
                               <summary><button value={beach.id} onClick={this.getHours}>hours</button></summary>
                               <div className="card-content">
-
-
                                 <p>beach.hours</p>
-
                               </div>
                             </details>
 
                             {/* parking */}
                             <details>
-                              <summary><button value={beach.id} >parking</button></summary>
+                              <summary><button value={beach.id} onClick={this.getParking} >parking</button></summary>
                               <div className="card-content">
-                                <p> {beach.parking}</p>
+                                this.state.parkingArray.map((parking, index) => {
+                                <p> parking</p>
+                              }
                               </div>
                             </details>
 
@@ -461,10 +502,12 @@ class App extends React.Component {
                             <details>
                             <summary><button value={beach.id} onClick={this.getTides} >tides</button></summary>
                               <div className="card-content">
-                                <p> {beach.latitude}</p>
-                                <p> {beach.longitude}</p>
-                                <p> </p>
-
+                                <p> latitiude: {beach.latitude}</p>
+                                <p> longitude: {beach.longitude}</p>
+                                <p> {this.state.high1} {this.state.highTime1} {this.state.highHeight1} </p>
+                                <p> {this.state.low1} {this.state.lowTime1} {this.state.lowHeight1} </p>
+                                <p> {this.state.high2} {this.state.highTime2}{this.state.highHeight2}  </p>
+                                <p> {this.state.low2} {this.state.lowTime2} {this.state.highHeight2} </p>
                               </div>
                             </details>
                           </footer>

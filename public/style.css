@@ -25,7 +25,6 @@ html {
 }
 
 body {
-  font-family: 'Liu Jian Mao Cao', cursive;
   /* background-color: var(--sand); */
 }
 
@@ -33,6 +32,8 @@ body {
   color: #9d6a41;
   /* background-color: var(--sand); */
 }
+
+  /* font-family: 'Liu Jian Mao Cao', cursive; */
 
 .notes-section .todo-card .card.header .card-title .card {
   /* background-color: var(--sand); */
