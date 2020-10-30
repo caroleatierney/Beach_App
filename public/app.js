@@ -1,35 +1,36 @@
+// import bulmaCarousel from 'bulma-carousel';
+
 //***********************************************
 //***** string/array manpulation variables ******
 //***********************************************
 
-var save_name=''
-var save_beach_photo=''
-var save_beach_photo_credit=''
-var save_access=''
-var save_parking=''
-var save_hours=''
-var save_avail_rec=''
-var save_latitude=''
-var save_longitude=''
+// save all fields but notes for the update only notes
+var save_name, save_beach_photo, save_beach_photo_credit, save_access, save_parking,  save_hours, save_avail_rec, save_latitude, save_longitude =''
 
+// ??????????????????????????????????????/
 var rec, hours, parking, photo, photoCredit =''
 var recArray, hoursArray, parkingArray, photoArray, photoCreditArray =[]
 
-var high1 = ''
-var highTime1 = ''
-var highHeight1 = ''
+// use thes fields to set state for tides after strings manipulated
+var extremeTide1, highDate1, extremeDate1, highTime1, extremeTime1=''
+var highHeight1, extremeHeight1 = 0
 
-var low1 = ''
-var lowTime1 = ''
-var lowHeight1 = ''
+var extremeTide2, highDate2, extremeDate2, highTime2, extremeTime2=''
+var highHeight2, extremeHeight2 = 0
 
-var high2 = ''
-var highTime2 = ''
-var highHeight2 = ''
+var extremeTide3, highDate3, extremeDate3, highTime3, extremeTime3=''
+var highHeight3, extremeHeight3 = 0
 
-var low2 = ''
-var lowTime2 = ''
-var lowHeight2 = ''
+var extremeTide4, highDate4, extremeDate4, highTime4, extremeTime4=''
+var highHeight4, extremeHeight4 = 0
+
+var highDate, highTime, highHeight =[]
+
+// fields to display in table
+var high1, highDate1, highTime1, highHeight1 = ''
+var low1, lowDate1, lowTime1,lowHeight1 = ''
+var high2, highDate2, highTime2, highHeight2 = ''
+var low2, lowDate2, lowTime2, lowHeight2 = ''
 
 //***********************************************
 //*************** front end *********************
@@ -67,7 +68,7 @@ class App extends React.Component {
     // console.log(this.state.lat);
     // console.log(this.state.long);
 
-      fetch("https://tides.p.rapidapi.com/tides?latitude=" + this.state.lat + "&longitude=" + this.state.long, {
+    fetch("https://tides.p.rapidapi.com/tides?latitude=" + this.state.lat + "&longitude=" + this.state.long, {
     	"method": "GET",
     	"headers": {
     		"x-rapidapi-host": "tides.p.rapidapi.com",
@@ -76,36 +77,71 @@ class App extends React.Component {
     })
     .then (response => response.json())
       .then(data => {
-      console.log(data);
+      // console.log(data);
       // console.log(data.extremes);
       // console.log(data.extremes[0].datetime);
 
+      for (let i = 0; i <= 3; i++) {
+       let extremeNewDate = new Date(data.extremes[i].datetime)
+       let extremeTime = extremeNewDate.toLocaleTimeString()
+       let extremeDate = extremeNewDate.toLocaleDateString()
+       let extremeHeight = data.extremes[i].height
+       let extremeRoundedHeight= Math.round(extremeHeight * 100)/100
+
+       console.log(i);
+       console.log(extremeNewDate);
+       console.log(extremeDate);
+       console.log(extremeTime);
+       console.log(extremeRoundedHeight);
+
+       // highDate[i]=extremeDate;
+       // highTime[i]=extremeTime;
+       // highHeight[i]=extremeRoundedHeight;
+      }
+
       this.setState(
-        {
-        high1:data.extremes[0].state,
-        low1:data.extremes[1].state,
-        high2:data.extremes[2].state,
-        low2:data.extremes[3].state,
+      {
 
-        highTime1:data.extremes[0].datetime,
-        lowTime1:data.extremes[1].datetime,
-        highTime2:data.extremes[2].datetime,
-        lowTime2:data.extremes[3].datetime,
+      // highDate1:highDate[0],
+      // highTime1:highTime[0],
+      // highHeight1:highHeight[0],
 
-        highHeight1:data.extremes[0].height,
-        lowHeight1:data.extremes[1].height,
-        highHeight2:data.extremes[2].height,
-        lowHeight2:data.extremes[3].height,
-        }
-      )
-      return data;
+      // highDate2:extremeDate[1],
+      // highTime2:extremeTime[1],
+      // highHeight2:extremeHeight[1],
+
+      // highDate3:extremeDate[2],
+      // highTime3:extremeTime[2],
+      // highHeight3:extremeHeight[2],
+
+      // highDate4:extremeDate[3],
+      // highTime4:extremeTime[3],
+      // highHeight4:extremeHeight[3]
+
+      high1:data.extremes[0].state,
+      low1:data.extremes[1].state,
+      high2:data.extremes[2].state,
+      low2:data.extremes[3].state,
+
+      highTime1:data.extremes[0].datetime,
+      lowTime1:data.extremes[1].datetime,
+      highTime2:data.extremes[2].datetime,
+      lowTime2:data.extremes[3].datetime,
+
+      highHeight1:data.extremes[0].height,
+      lowHeight1:data.extremes[1].height,
+      highHeight2:data.extremes[2].height,
+      lowHeight2:data.extremes[3].height,
+
+      }
+    )
+    return data;
     })
 
     .catch(err => {
-    	console.log(err);
+    console.log(err);
     });
   }
-
   //***********************************************
   //**************** CREATE ***********************
   //***********************************************
@@ -353,6 +389,9 @@ class App extends React.Component {
                   rec = beach.avail_rec
                   recArray=rec.split(",")
 
+
+
+
                   // console.log(recArray[0])
 
                   return <li key={index}>
@@ -466,21 +505,25 @@ class App extends React.Component {
                                   <tbody>
                                     <tr>
                                       <td> {this.state.high1} </td>
+                                      <td> {this.state.highDate1} </td>
                                       <td> {this.state.highTime1} </td>
                                       <td> {this.state.highHeight1} </td>
                                     </tr>
                                     <tr>
                                       <td> {this.state.low1} </td>
+                                      <td> {this.state.lowDate1} </td>
                                       <td> {this.state.lowTime1} </td>
                                       <td> {this.state.lowHeight1} </td>
                                     </tr>
                                     <tr>
                                       <td> {this.state.high2} </td>
+                                      <td> {this.state.highDate2} </td>
                                       <td> {this.state.highTime2} </td>
                                       <td> {this.state.highHeight2} </td>
                                     </tr>
                                     <tr>
                                       <td> {this.state.low2} </td>
+                                      <td> {this.state.lowDate2} </td>
                                       <td> {this.state.lowTime2} </td>
                                       <td> {this.state.lowHeight2} </td>
                                     </tr>
