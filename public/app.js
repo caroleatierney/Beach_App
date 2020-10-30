@@ -1,11 +1,19 @@
-var rec=''
-var recArray=[]
+//***********************************************
+//***** string/array manpulation variables ******
+//***********************************************
 
-var hours=''
-var hoursArray=[]
+var save_name=''
+var save_beach_photo=''
+var save_beach_photo_credit=''
+var save_access=''
+var save_parking=''
+var save_hours=''
+var save_avail_rec=''
+var save_latitude=''
+var save_longitude=''
 
-var parking=''
-var parkingArray=[]
+var rec, hours, parking, photo, photoCredit =''
+var recArray, hoursArray, parkingArray, photoArray, photoCreditArray =[]
 
 var high1 = ''
 var highTime1 = ''
@@ -17,7 +25,7 @@ var lowHeight1 = ''
 
 var high2 = ''
 var highTime2 = ''
-var lowHeight2 = ''
+var highHeight2 = ''
 
 var low2 = ''
 var lowTime2 = ''
@@ -29,11 +37,19 @@ var lowHeight2 = ''
 //********* sends the request back end  *********
 //***********************************************
 class App extends React.Component {
+
+  // Assign state itself, and a default value for items
   state = {
     beaches:[],
   }
 
   componentDidMount = () => {
+  // var carousels = bulmaCarousel.attach('.carousel',
+  // {
+    // slidesToScroll:5,
+    // slidesTooShow: 1
+  // });
+
     axios.get('/beaches').then(
       (response) => {
         this.setState({
@@ -76,13 +92,12 @@ class App extends React.Component {
         highTime2:data.extremes[2].datetime,
         lowTime2:data.extremes[3].datetime,
 
-        highHeight1:data.extremes[0].datetime,
-        lowHeight1:data.extremes[1].datetime,
-        highHeight2:data.extremes[2].datetime,
-        lowHeight2:data.extremes[3].datetime,
+        highHeight1:data.extremes[0].height,
+        lowHeight1:data.extremes[1].height,
+        highHeight2:data.extremes[2].height,
+        lowHeight2:data.extremes[3].height,
         }
       )
-
       return data;
     })
 
@@ -201,18 +216,17 @@ class App extends React.Component {
     axios.put(
       '/beaches/' + id,
       {
-        name:this.state.updateBeach_name,
-        photo:this.state.updateBeach_photo,
-        photo_credit:this.state.updateBeach_photo_credit,
-        access:this.state.updateBeach_access,
-        parking:this.state.updateBeach_parking,
-        hours:this.state.updateBeach_hours,
-        avail_rec:this.state.updateBeach_avail_rec,
+        name:save_name,
+        photo:save_beach_photo,
+        photo_credit:save_beach_photo_credit,
+        access:save_access,
+        parking:save_parking,
+        hours:save_hours,
+        avail_rec:save_avail_rec,
         notes:this.state.updateBeach_notes,
-        latitude:this.state.updateBeach_latitude,
-        longitude:this.state.updateBeach_longitude,
+        latitude:save_latitude,
+        longitude:save_longitude,
       }
-
     ).then(
       (response) => {
         this.setState({
@@ -232,54 +246,9 @@ class App extends React.Component {
     )
   }
 
-  changeUpdateBeachName = (event) => {
-    this.setState({
-      updateBeach_name:event.target.value
-      })
-    }
-  changeUpdateBeachPhoto = (event) => {
-    this.setState({
-      updateBeach_photo:event.target.value
-    })
-  }
-  changeUpdateBeachPhoto_Credit = (event) => {
-    this.setState({
-      updateBeach_photo_credit:event.target.value
-    })
-  }
-  changeUpdateBeachAccess = (event) => {
-    this.setState({
-      updateBeach_access:event.target.value
-    });
-  }
-  changeUpdateBeachParking = (event) => {
-    this.setState({
-      updateBeach_parking:event.target.value
-    });
-  }
-  changeUpdateBeachHours = (event) => {
-    this.setState({
-      updateBeach_hours:event.target.value
-    });
-  }
-  changeUpdateBeachAvail_Rec = (event) => {
-    this.setState({
-      updateBeach_avail_rec:event.target.value
-    });
-  }
   changeUpdateBeachNotes = (event) => {
     this.setState({
       updateBeach_notes:event.target.value
-    });
-  }
-  changeUpdateBeachLatitude = (event) => {
-    this.setState({
-      updateBeach_latitude:event.target.value
-    });
-  }
-  changeUpdateBeachLongitude = (event) => {
-    this.setState({
-      updateBeach_longitude:event.target.value
     });
   }
 
@@ -325,7 +294,8 @@ class App extends React.Component {
             </div>
           <div className="column is-two-thirds">
               <h1 className="title">Welcome Marshfield Beachgoers!</h1>
-              <h2>Below is your Beach Bucket list - Please update your vote!</h2>
+              <h2>Below is your Beach Bucket list!</h2>
+              {/*  add logic later <h2 update your vote!</h2>*/}
 
               {/* create beach */}
               <details>
@@ -362,15 +332,15 @@ class App extends React.Component {
                 this.state.beaches.map((beach, index) => {
 
                   {/* save all fields this.state.notes is the only field allowed to be updated */}
-                  var save_name=beach.name
-                  var save_beach_photo=beach.photo
-                  var save_beach_photo_credit=beach.photo_credit
-                  var save_access=beach.access
-                  var save_parking=beach.parking
-                  var save_hours=beach.hours
-                  var save_avail_rec=beach.avail_rec
-                  var save_latitude=beach.latitude
-                  var save_longitude=beach.longitude
+                  save_name=beach.name
+                  save_beach_photo=beach.photo
+                  save_beach_photo_credit=beach.photo_credit
+                  save_access=beach.access
+                  save_parking=beach.parking
+                  save_hours=beach.hours
+                  save_avail_rec=beach.avail_rec
+                  save_latitude=beach.latitude
+                  save_longitude=beach.longitude
 
                   this.state.lat=beach.latitude
                   this.state.long=beach.longitude
@@ -383,16 +353,18 @@ class App extends React.Component {
                   rec = beach.avail_rec
                   recArray=rec.split(",")
 
-                  console.log(recArray[0])
+                  // console.log(recArray[0])
 
                   return <li key={index}>
                     <div className="columns">
 
-                      {/* beach photo} */}
+                      {/* beach photo carousel} */}
                       <div className="column photo-section">
+
                         <h1>{beach.name}</h1>
                         <img src={beach.photo}/>
                         <h3>photo credit: {beach.photo_credit}</h3>
+
                       </div>
 
                       {/* beach card */}
@@ -404,7 +376,7 @@ class App extends React.Component {
                               <p className="title">Beach Notes</p>
                               <p className="title">{beach.notes}</p>
                               <div className="title is-centered">
-                                <h2><i className="title fas fa-thumbs-up"></i><i className="title fas fa-thumbs-down"></i></h2>
+                                {/* add later  <h2><i className="title fas fa-thumbs-up"></i><i className="title fas fa-thumbs-down"></i></h2>*/}
                               </div>
                             </div>
 
@@ -418,16 +390,7 @@ class App extends React.Component {
                                 <div className="card">
                                   <div className="card-content">
                                     <form id={beach.id} onSubmit={this.updateBeach}>
-                                    <input onKeyUp={this.changeUpdateBeachName} type='text'  placeholder='name' /><br/>
-                                    <input onKeyUp={this.changeUpdateBeachPhoto} type='text' placeholder='photo' /><br/>
-                                    <input onKeyUp={this.changeUpdateBeachPhoto_Credit} type='text' placeholder='photo credit' /><br/>
-                                    <input onKeyUp={this.changeUpdateBeachAccess} type='text' placeholder='access' /><br/>
-                                    <input onKeyUp={this.changeUpdateBeachParking} type='text' placeholder='parking' /><br/>
-                                    <input onKeyUp={this.changeUpdateBeachHours} type='text' placeholder='hours' /><br/>
-                                    <input onKeyUp={this.changeUpdateBeachAvail_Rec} type='text' placeholder='available recreation' /><br/>
                                     <textarea onKeyUp={this.changeUpdateBeachNotes} defaultValue={beach.notes}></textarea><br/>
-                                    <input onKeyUp={this.changeUpdateBeachLatitude} type='number' step="0.001" placeholder='latitude' /><br/>
-                                    <input onKeyUp={this.changeUpdateBeachLongitude} type='number' step="0.001"  placeholder='longitude' /><br/>
                                     <input type="submit" value="Update Beach Notes!" />
                                     </form>
                                   </div>
@@ -442,7 +405,7 @@ class App extends React.Component {
                     {/* beach list container to add more info under CRUD container */}
                     <div className="container">
                       <details>
-                        <summary><button value={beach.id}>more information</button></summary>
+                        <summary>more information</summary>
                         <div className="card todo-card is-vcentered has-text-centered is-flex-wrap-wrap">
                           <div className="card-header">
                             <div className="card-title">
@@ -460,7 +423,7 @@ class App extends React.Component {
                           <footer className="card-footer is-align-content-space-between">
                             {/* hours */}
                             <details>
-                              <summary><button value={beach.id} onClick={this.getHours}>hours</button></summary>
+                              <summary>hours</summary>
                               <div className="card-content">
                               <ul>
                                 {hoursArray.map(hoursInfo => (
@@ -472,7 +435,7 @@ class App extends React.Component {
 
                             {/* parking */}
                             <details>
-                              <summary><button value={beach.id} >parking</button></summary>
+                              <summary>parking</summary>
                                 <div className='card-content'>
                                   <ul>
                                     {parkingArray.map(parkingInfo => (
@@ -484,14 +447,46 @@ class App extends React.Component {
 
                             {/* tides */}
                             <details>
-                            <summary><button value={beach.id} onClick={this.getTides} >tides</button></summary>
+                              <summary onClick={this.getTides} >tides</summary>
                               <div className="card-content">
-                                <p> latitiude: {beach.latitude}</p>
-                                <p> longitude: {beach.longitude}</p>
-                                <p> {this.state.high1} {this.state.highTime1} {this.state.highHeight1} </p>
-                                <p> {this.state.low1} {this.state.lowTime1} {this.state.lowHeight1} </p>
-                                <p> {this.state.high2} {this.state.highTime2}{this.state.highHeight2}  </p>
-                                <p> {this.state.low2} {this.state.lowTime2} {this.state.highHeight2} </p>
+                                <h1 className="title has-text-weight-bold">{beach.name}</h1>
+                                <p className="subtitle is-italic">Latitiude: {beach.latitude}</p>
+                                <p className="subtitle is-italic">Longitude: {beach.longitude}</p>
+
+                                <table border="1">
+                                  <thead>
+                                    <tr key={beach.id}>
+                                      <th>Extreme</th>
+                                      <th>Date</th>
+                                      <th>Time</th>
+                                      <th>Height</th>
+                                    </tr>
+                                  </thead>
+
+                                  <tbody>
+                                    <tr>
+                                      <td> {this.state.high1} </td>
+                                      <td> {this.state.highTime1} </td>
+                                      <td> {this.state.highHeight1} </td>
+                                    </tr>
+                                    <tr>
+                                      <td> {this.state.low1} </td>
+                                      <td> {this.state.lowTime1} </td>
+                                      <td> {this.state.lowHeight1} </td>
+                                    </tr>
+                                    <tr>
+                                      <td> {this.state.high2} </td>
+                                      <td> {this.state.highTime2} </td>
+                                      <td> {this.state.highHeight2} </td>
+                                    </tr>
+                                    <tr>
+                                      <td> {this.state.low2} </td>
+                                      <td> {this.state.lowTime2} </td>
+                                      <td> {this.state.lowHeight2} </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <p>Not suitable for navigation purposes</p>
                               </div>
                             </details>
                           </footer>
@@ -530,14 +525,20 @@ ReactDOM.render(
 )
 
 
-// name:save_name,
-// photo:save_beach_photo,
-// photo_credit:save_beach_photo_credit,
-// access:save_access,
-// parking:save_parking,
-// hours:save_hours,
-// avail_rec:save_avail_rec,
+
+
+// name:this.state.updateBeach_name,
+// photo:this.state.updateBeach_photo,
+// photo_credit:this.state.updateBeach_photo_credit,
+// access:this.state.updateBeach_access,
+// parking:this.state.updateBeach_parking,
+// hours:this.state.updateBeach_hours,
+// avail_rec:this.state.updateBeach_avail_rec,
 // notes:this.state.updateBeach_notes,
+// latitude:this.state.updateBeach_latitude,
+// longitude:this.state.updateBeach_longitude,
+
+
 
 
     // console.log(this.state.beachParking);
@@ -556,3 +557,66 @@ ReactDOM.render(
       // <img src="https://i.imgur.com/JlPzFny.png"/>
       // <img src="https://i.imgur.com/MA74rCS.png"/>
     // </span>
+
+
+    //
+    // changeUpdateBeachName = (event) => {
+    //   this.setState({
+    //     updateBeach_name:event.target.value
+    //     })
+    //   }
+    // changeUpdateBeachPhoto = (event) => {
+    //   this.setState({
+    //     updateBeach_photo:event.target.value
+    //   })
+    // }
+    // // changeUpdateBeachPhoto_Credit = (event) => {
+    //   this.setState({
+    //     updateBeach_photo_credit:event.target.value
+    //   })
+    // }
+    // changeUpdateBeachAccess = (event) => {
+    //   this.setState({
+    //     updateBeach_access:event.target.value
+    //   });
+    // }
+    // changeUpdateBeachParking = (event) => {
+    //   this.setState({
+    //     updateBeach_parking:event.target.value
+    //   });
+    // }
+    // changeUpdateBeachHours = (event) => {
+    //   this.setState({
+    //     updateBeach_hours:event.target.value
+    //   });
+    // }
+    // changeUpdateBeachAvail_Rec = (event) => {
+    //   this.setState({
+    //     updateBeach_avail_rec:event.target.value
+    //   });
+    // }
+    // changeUpdateBeachNotes = (event) => {
+    //   this.setState({
+    //     updateBeach_notes:event.target.value
+    //   });
+    // }
+    // changeUpdateBeachLatitude = (event) => {
+    //   this.setState({
+    //     updateBeach_latitude:event.target.value
+    //   });
+    // }
+    // changeUpdateBeachLongitude = (event) => {
+    //   this.setState({
+    //     updateBeach_longitude:event.target.value
+    //   });
+    // }
+
+    // <input onKeyUp={this.changeUpdateBeachName} type='text'  placeholder='name' /><br/>
+    // <input onKeyUp={this.changeUpdateBeachPhoto} type='text' placeholder='photo' /><br/>
+    // <input onKeyUp={this.changeUpdateBeachPhoto_Credit} type='text' placeholder='photo credit' /><br/>
+    // <input onKeyUp={this.changeUpdateBeachAccess} type='text' placeholder='access' /><br/>
+    // <input onKeyUp={this.changeUpdateBeachParking} type='text' placeholder='parking' /><br/>
+    // <input onKeyUp={this.changeUpdateBeachHours} type='text' placeholder='hours' /><br/>
+    // <input onKeyUp={this.changeUpdateBeachAvail_Rec} type='text' placeholder='available recreation' /><br/>
+    // <input onKeyUp={this.changeUpdateBeachLatitude} type='number' step="0.001" placeholder='latitude' /><br/>
+    // <input onKeyUp={this.changeUpdateBeachLongitude} type='number' step="0.001"  placeholder='longitude' /><br/>

@@ -6,8 +6,8 @@ CREATE TABLE beaches
 (
   id serial primary key,
   name VARCHAR(20),
-  photo VARCHAR(100),
-  photo_credit VARCHAR(40),
+  photo VARCHAR(500),
+  photo_credit VARCHAR(200),
   access VARCHAR(10),
   parking VARCHAR(150),
   hours VARCHAR(200),
