@@ -11,7 +11,7 @@ var save_name, save_beach_photo, save_beach_photo_credit, save_access, save_park
 var rec, hours, parking, photo, photoCredit =''
 var recArray, hoursArray, parkingArray, photoArray, photoCreditArray =[]
 
-// use thes fields to set state for tides after strings manipulated
+// use these fields to set state for tides after strings manipulated
 var extremeTide1, highDate1, extremeDate1, highTime1, extremeTime1=''
 var highHeight1, extremeHeight1 = 0
 
@@ -24,7 +24,9 @@ var highHeight3, extremeHeight3 = 0
 var extremeTide4, highDate4, extremeDate4, highTime4, extremeTime4=''
 var highHeight4, extremeHeight4 = 0
 
-var highDate, highTime, highHeight =[]
+var date=[]
+var time =[]
+var height =[]
 
 // fields to display in table
 var high1, highDate1, highTime1, highHeight1 = ''
@@ -81,6 +83,7 @@ class App extends React.Component {
       // console.log(data.extremes);
       // console.log(data.extremes[0].datetime);
 
+
       for (let i = 0; i <= 3; i++) {
        let extremeNewDate = new Date(data.extremes[i].datetime)
        let extremeTime = extremeNewDate.toLocaleTimeString()
@@ -88,51 +91,38 @@ class App extends React.Component {
        let extremeHeight = data.extremes[i].height
        let extremeRoundedHeight= Math.round(extremeHeight * 100)/100
 
-       console.log(i);
-       console.log(extremeNewDate);
-       console.log(extremeDate);
-       console.log(extremeTime);
-       console.log(extremeRoundedHeight);
+       // console.log(i);
+       // console.log(extremeNewDate);
+       // console.log(extremeDate);
+       // console.log(extremeTime);
+       // console.log(extremeRoundedHeight);
 
-       // highDate[i]=extremeDate;
-       // highTime[i]=extremeTime;
-       // highHeight[i]=extremeRoundedHeight;
+       date[i]=extremeDate;
+       time[i]=extremeTime;
+       height[i]=extremeRoundedHeight;
       }
 
       this.setState(
       {
-
-      // highDate1:highDate[0],
-      // highTime1:highTime[0],
-      // highHeight1:highHeight[0],
-
-      // highDate2:extremeDate[1],
-      // highTime2:extremeTime[1],
-      // highHeight2:extremeHeight[1],
-
-      // highDate3:extremeDate[2],
-      // highTime3:extremeTime[2],
-      // highHeight3:extremeHeight[2],
-
-      // highDate4:extremeDate[3],
-      // highTime4:extremeTime[3],
-      // highHeight4:extremeHeight[3]
-
       high1:data.extremes[0].state,
+      highDate1:date[0],
+      highTime1:time[0],
+      highHeight1:height[0],
+
       low1:data.extremes[1].state,
+      lowDate1:date[1],
+      lowTime1:time[1],
+      lowHeight1:height[1],
+
       high2:data.extremes[2].state,
+      highDate2:date[2],
+      highTime2:time[2],
+      highHeight2:height[2],
+
       low2:data.extremes[3].state,
-
-      highTime1:data.extremes[0].datetime,
-      lowTime1:data.extremes[1].datetime,
-      highTime2:data.extremes[2].datetime,
-      lowTime2:data.extremes[3].datetime,
-
-      highHeight1:data.extremes[0].height,
-      lowHeight1:data.extremes[1].height,
-      highHeight2:data.extremes[2].height,
-      lowHeight2:data.extremes[3].height,
-
+      lowDate2:date[3],
+      lowTime2:time[3],
+      lowHeight2:height[3],
       }
     )
     return data;
@@ -295,7 +285,7 @@ class App extends React.Component {
         <nav className="navbar" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
             <a className="navbar-item" href="https://bulma.io">
-              <img src="https://i.imgur.com/kWKYRa8.jpg"/>
+              {/* <img src="https://i.imgur.com/kWKYRa8.jpg"/>*/}
             </a>
           </div>
 
@@ -335,7 +325,7 @@ class App extends React.Component {
 
               {/* create beach */}
               <details>
-                <summary><button>create beach</button></summary>
+                <summary>Create new discovered private Beach!</summary>
                   <div className="card">
                     <div className="card-content">
                       <form onSubmit={this.createBeach}>
@@ -349,7 +339,7 @@ class App extends React.Component {
                         <textarea onKeyUp={this.changeNewBeachNotes} placeholder='notes' ></textarea><br/>
                         <input onKeyUp={this.changeNewBeachLatitude} type='number' step="0.001" placeholder='latitude' /><br/>
                         <input onKeyUp={this.changeNewBeachLongitude} type='number' step="0.001" placeholder='longitude' /><br/>
-                        <input type="submit" value="Create new discovered private Beach!" />
+                        <input type="submit" value="Create Beach" />
                       </form>
                     </div>
                   </div>
@@ -425,7 +415,7 @@ class App extends React.Component {
                               <button value={beach.id} onClick={this.deleteBeach}>delete beach</button>
                               {/* edit newBeach_notes */}
                               <details>
-                                <summary><button value={beach.id} >edit notes</button></summary>
+                                <summary>edit notes</summary>
                                 <div className="card">
                                   <div className="card-content">
                                     <form id={beach.id} onSubmit={this.updateBeach}>
@@ -567,40 +557,9 @@ ReactDOM.render(
   document.querySelector('main')
 )
 
-
-
-
-// name:this.state.updateBeach_name,
-// photo:this.state.updateBeach_photo,
-// photo_credit:this.state.updateBeach_photo_credit,
-// access:this.state.updateBeach_access,
-// parking:this.state.updateBeach_parking,
-// hours:this.state.updateBeach_hours,
-// avail_rec:this.state.updateBeach_avail_rec,
-// notes:this.state.updateBeach_notes,
-// latitude:this.state.updateBeach_latitude,
-// longitude:this.state.updateBeach_longitude,
-
-
-
-
     // console.log(this.state.beachParking);
     // console.log(this.state.beaches);
     // console.log(parkingArray);
-
-
-    // <span className="icon is-flex-direction-row is-justify-content-space-evenly">
-      // <img src="https://i.imgur.com/FAOW8rW.png"/>
-      // <img src="https://i.imgur.com/boTxmLr.png"/>
-      // <img src="https://i.imgur.com/EJwnOgi.png"/>
-      // <img src="https://i.imgur.com/Sovm9sB.png"/>
-      // <img src="https://i.imgur.com/gSIFxt4.png"/>
-      // <img src="https://i.imgur.com/huyrFri.png"/>
-      // <img src="https://i.imgur.com/bPvVrcT.png"/>
-      // <img src="https://i.imgur.com/JlPzFny.png"/>
-      // <img src="https://i.imgur.com/MA74rCS.png"/>
-    // </span>
-
 
     //
     // changeUpdateBeachName = (event) => {
