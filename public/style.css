@@ -12,15 +12,18 @@
   --medium-slate-blue:#5c71a0;
 }
 
-html {
+/* html {
   overflow-y: visible;
-}
+} */
 
 * {
   /* border: 2px solid gold; */
 }
 
-.navbar {
+.navbar, navbar-menu {
+display: flex;
+  /*   flex-direction: row; */
+  /* display: inline-block; */
   background-color: var(--sky-blue);
 }
 
@@ -28,12 +31,51 @@ body {
   /* background-color: var(--sand); */
 }
 
+.image {
+  position: relative;
+  width: 100%;
+}
+
 .photo-section {
-  color: #9d6a41;
+  color: #37312f;
   /* background-color: var(--sand); */
 }
 
+.hero {
+  color: #9d6a41;
+  background-color: var(--sand);
+
   /* font-family: 'Liu Jian Mao Cao', cursive; */
+
+}
+
+.beach-container {
+  background-color: var(--sand);
+}
+
+h1 {
+  font-family: 'Liu Jian Mao Cao', cursive;
+  color: #9d6a41;
+}
+
+h2 {
+  font-family: 'Roboto Slab', serif;
+  position: absolute;
+  top: 100px;
+  left:0;
+  width: 100%
+}
+
+h2 span {
+  color: white;
+   font: bold 24px/45px Helvetica, Sans-Serif;
+   letter-spacing: -1px;
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0);
+   padding: 10px;
+  /* help from below link */
+  /* https://stackoverflow.com/questions/44360722/add-text-over-images-next-to-each-other-with-react-inline-styles */
+}
 
 .notes-section .todo-card .card.header .card-title .card {
   /* background-color: var(--sand); */
@@ -43,4 +85,13 @@ body {
   width: 100%;
   justify-content: center;
   /* background-color: var(--sand); */
+}
+
+.foot{
+  /* justify-content: space-evenly; */
+  /* align-items: center; */
+  /* align-content: space-between; */
+  display:flex;
+  align-items:left;
+  color: red;
 }

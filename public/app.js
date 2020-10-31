@@ -285,12 +285,12 @@ class App extends React.Component {
         <nav className="navbar" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
             <a className="navbar-item" href="https://bulma.io">
-              {/* <img src="https://i.imgur.com/kWKYRa8.jpg"/>*/}
+              <img id="header-logo" src="https://i.imgur.com/kWKYRa8.jpg" width="112" height="500"/>
             </a>
           </div>
 
           {/* nav bar */}
-          <div className="navbar-menu">
+          <div className="navbar-menu is-active">
             <div className="navbar-start">
               <a className="navbar-item">town history</a>
               <a className="navbar-item">restaurants</a>
@@ -300,10 +300,10 @@ class App extends React.Component {
             <div className="navbar-end">
               <div className="navbar-item">
                 <div className="buttons">
-                  <a className= "button is-primary">
+                  <a className= "button is-primary is-light is-outlined is-focused">
                     <strong>get started</strong>
                   </a>
-                  <a className= "button is-light">
+                  <a className= "button is-primary is-light is-outlined is-focused">
                     <strong>log in</strong>
                   </a>
                 </div>
@@ -312,47 +312,52 @@ class App extends React.Component {
           </div>
         </nav>
 
-        {/* hero section */}
-        <section className="hero">
-          <div className="columns">
-          <div className="column is-one-third">
-              <img src="https://i.imgur.com/kWKYRa8.jpg"/>
+        {/* ========================================= */}
+        {/* ============   hero section   =========== */}
+        {/* ========================================= */}
+        <section className="hero has-text-centered">
+          <div>
+            <div>
+              <h1 className="title is-1">Welcome Marshfield Beachgoers!</h1>
             </div>
-          <div className="column is-two-thirds">
-              <h1 className="title">Welcome Marshfield Beachgoers!</h1>
-              <h2>Below is your Beach Bucket list!</h2>
+            <figure className="image is-vcentered">
+              <img src="https://i.imgur.com/GgT2yrh.jpg"/>
+              <h1 className="subtitle is-2">Below is your Beach Bucket list!</h1>
               {/*  add logic later <h2 update your vote!</h2>*/}
-
-              {/* create beach */}
-              <details>
-                <summary>Create new discovered private Beach!</summary>
-                  <div className="card">
-                    <div className="card-content">
-                      <form onSubmit={this.createBeach}>
-                        <input onKeyUp={this.changeNewBeachName} type='text' placeholder='name' /><br/>
-                        <input onKeyUp={this.changeNewBeachPhoto} type='text' placeholder='photo' /><br/>
-                        <input onKeyUp={this.changeNewBeachPhoto_Credit} type='text' placeholder='photo credit' /><br/>
-                        <input onKeyUp={this.changeNewBeachAccess} type='text' placeholder='access' /><br/>
-                        <input onKeyUp={this.changeNewBeachParking} type='text' placeholder='parking' /><br/>
-                        <input onKeyUp={this.changeNewBeachHours} type='text' placeholder='hours' /><br/>
-                        <input onKeyUp={this.changeNewBeachAvail_Rec} type='text' placeholder='available recreation' /><br/>
-                        <textarea onKeyUp={this.changeNewBeachNotes} placeholder='notes' ></textarea><br/>
-                        <input onKeyUp={this.changeNewBeachLatitude} type='number' step="0.001" placeholder='latitude' /><br/>
-                        <input onKeyUp={this.changeNewBeachLongitude} type='number' step="0.001" placeholder='longitude' /><br/>
-                        <input type="submit" value="Create Beach" />
-                      </form>
-                    </div>
-                  </div>
-              </details>
-            </div>
+            </figure>
           </div>
+
+          {/* create beach */}
+          <details>
+            <summary>Create new discovered private Beach!</summary>
+              <div className="card">
+                <div className="card-content">
+                  <form onSubmit={this.createBeach}>
+                    <input onKeyUp={this.changeNewBeachName} type='text' placeholder='name' /><br/>
+                    <input onKeyUp={this.changeNewBeachPhoto} type='text' placeholder='photo' /><br/>
+                    <input onKeyUp={this.changeNewBeachPhoto_Credit} type='text' placeholder='photo credit' /><br/>
+                    <input onKeyUp={this.changeNewBeachAccess} type='text' placeholder='access' /><br/>
+                    <input onKeyUp={this.changeNewBeachParking} type='text' placeholder='parking' /><br/>
+                    <input onKeyUp={this.changeNewBeachHours} type='text' placeholder='hours' /><br/>
+                    <input onKeyUp={this.changeNewBeachAvail_Rec} type='text' placeholder='available recreation' /><br/>
+                    <textarea onKeyUp={this.changeNewBeachNotes} placeholder='notes' ></textarea><br/>
+                    <input onKeyUp={this.changeNewBeachLatitude} type='number' step="0.001" placeholder='latitude' /><br/>
+                    <input onKeyUp={this.changeNewBeachLongitude} type='number' step="0.001" placeholder='longitude' /><br/>
+                    <input type="submit" value="Create Beach" />
+                  </form>
+                </div>
+              </div>
+          </details>
         </section>
 
+        {/* ========================================= */}
+        {/* ============   beach list   ============= */}
+        {/* ========================================= */}
         {/* beach list main container */}
         <div className="container">
           {/* beach list CRUD container */}
           <div className="container">
-            <h2> List of Marshfield Beaches </h2>
+            <h1 className="title is-2"> List of Marshfield Beaches </h1>
             <ul>
               {
                 this.state.beaches.map((beach, index) => {
@@ -379,19 +384,16 @@ class App extends React.Component {
                   rec = beach.avail_rec
                   recArray=rec.split(",")
 
-
-
-
                   // console.log(recArray[0])
 
                   return <li key={index}>
-                    <div className="columns">
+                    <div className="columns is-mobile">
 
                       {/* beach photo carousel} */}
                       <div className="column photo-section">
 
-                        <h1>{beach.name}</h1>
-                        <img src={beach.photo}/>
+                        <h1 className="title is-2">{beach.name}</h1>
+                          <img src={beach.photo}/>
                         <h3>photo credit: {beach.photo_credit}</h3>
 
                       </div>
@@ -412,7 +414,9 @@ class App extends React.Component {
                             {/* card footer */}
                             <footer className="card-footer">
                               <p className="card-footer-item"></p>
-                              <button value={beach.id} onClick={this.deleteBeach}>delete beach</button>
+                              <div className="foot">
+                                <button value={beach.id} onClick={this.deleteBeach}>delete beach</button>
+                              </div>
                               {/* edit newBeach_notes */}
                               <details>
                                 <summary>edit notes</summary>
@@ -538,13 +542,15 @@ class App extends React.Component {
         <div className="content has-text-centered">
             <p><strong> catZwebZ 2020
 
-            <a href="h#"><i className="fab fa-facebook-square fa-3x fa-fw"></i></a>
-            <a href="#" target="_top"><i className="fas fa-envelope fa-3x fa-fw" target="_blank"></i></a>
-            <a href="#" target="_blank"><i className="fab fa-instagram-square fa-3x fa-fw"></i></a>
-            <a href="#" target="_blank"><i className="fab fa-twitter-square fa-3x fa-fw"></i></a>
+            <a href="https://www.facebook.com/caroleatierney/"><i className="fab fa-facebook-square fa-3x fa-fw"></i></a>
+            <a href="https://www.facebook.com/caroleatierney/" target="_top"><i className="fas fa-envelope fa-3x fa-fw" target="_blank"></i></a>
+            <a href="https://www.instagram.com/caroleatierney/" target="_blank"><i className="fab fa-instagram-square fa-3x fa-fw"></i></a>
+            <a href="https://www.linkedin.com/in/caroleatierney/" target="_blank"><i className="fab fa-twitter-square fa-3x fa-fw"></i></a>
+            <a href="https://www.linkedin.com/in/caroleatierney/" target="_blank"><i className="fab fa-instagram-square fa-3x fa-fw"></i></a>
+            <a href="https://www.linkedin.com/in/caroleatierney/" target="_blank"><i className="fab fa-twitter-square fa-3x fa-fw"></i></a>
 
             </strong></p>
-            <div>Icons made by <a href="https://www.flaticon.local/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.local/" title="Flaticon">www.flaticon.local</a></div>
+            <div>Recreation icons made by <a href="https://www.flaticon.local/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.local/" title="Flaticon">www.flaticon.local</a></div>
         </div>
       </footer>
     </div>
