@@ -7,22 +7,8 @@
 // save all fields but notes for the update only notes
 var save_name, save_beach_photo, save_beach_photo_credit, save_access, save_parking,  save_hours, save_avail_rec, save_latitude, save_longitude =''
 
-// ??????????????????????????????????????/
 var rec, hours, parking, photo, photoCredit =''
 var recArray, hoursArray, parkingArray, photoArray, photoCreditArray =[]
-
-// use these fields to set state for tides after strings manipulated
-var extremeTide1, highDate1, extremeDate1, highTime1, extremeTime1=''
-var highHeight1, extremeHeight1 = 0
-
-var extremeTide2, highDate2, extremeDate2, highTime2, extremeTime2=''
-var highHeight2, extremeHeight2 = 0
-
-var extremeTide3, highDate3, extremeDate3, highTime3, extremeTime3=''
-var highHeight3, extremeHeight3 = 0
-
-var extremeTide4, highDate4, extremeDate4, highTime4, extremeTime4=''
-var highHeight4, extremeHeight4 = 0
 
 var date=[]
 var time =[]
@@ -285,7 +271,7 @@ class App extends React.Component {
         <nav className="navbar" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
             <a className="navbar-item" href="https://bulma.io">
-              <img id="header-logo" src="https://i.imgur.com/kWKYRa8.jpg" width="112" height="500"/>
+              {/* <img id="header-logo" src="https://i.imgur.com/kWKYRa8.jpg" width="112" height="500"/> */}
             </a>
           </div>
 
@@ -316,11 +302,14 @@ class App extends React.Component {
         <section className="hero has-text-centered">
           <div>
             <div>
-              <h1 className="title is-1">Welcome Marshfield Beachgoers!</h1>
+              <h1 className="title is-1">Welcome Marshfield Beach Goers!</h1>
             </div>
             <figure className="image is-vcentered">
               <img src="https://i.imgur.com/GgT2yrh.jpg"/>
-              <h1 className="subtitle is-2">Below is your Beach Bucket list!</h1>
+              <h3>photo credit: Shoreline Aviation</h3>
+              <br />
+              <h1 className="title is-2">Below is your Beach Bucket list!</h1>
+              <br />
               {/*  add logic later <h2 update your vote!</h2>*/}
             </figure>
           </div>
@@ -329,7 +318,7 @@ class App extends React.Component {
           <details>
             <summary>Create new discovered private Beach!</summary>
               <div className="card">
-                <div className="card-content card-color">
+                <div className="card-content card-color-create">
                   <form onSubmit={this.createBeach}>
                     <input onKeyUp={this.changeNewBeachName} type='text' placeholder='name' /><br/>
                     <input onKeyUp={this.changeNewBeachPhoto} type='text' placeholder='photo' /><br/>
@@ -346,6 +335,7 @@ class App extends React.Component {
                 </div>
               </div>
           </details>
+          <br />
         </section>
 
         {/* ========================================= */}
@@ -355,7 +345,6 @@ class App extends React.Component {
         <div className="container">
           {/* beach list CRUD container */}
           <div className="container">
-            <h1 className="title is-2"> List of Marshfield Beaches </h1>
             <ul>
               {
                 this.state.beaches.map((beach, index) => {
@@ -382,13 +371,17 @@ class App extends React.Component {
                   rec = beach.avail_rec
                   recArray=rec.split(",")
 
-                  // console.log(recArray[0])
-
-                  return <li key={index}>
+                // console.log(recArray[0])
+                return <li key={index}>
+                  <div className="box">
                     <div className="columns is-mobile">
                       <div className="column photo-section">
-                        <h2>{beach.name}</h2>
-                        <img src={beach.photo}/>
+                        <h2 className="title">{beach.name}</h2>
+
+                        <figure class="image is-200x200">
+                          <img src={beach.photo}/>
+                        </figure>
+
                         <h3>photo credit: {beach.photo_credit}</h3>
                       </div>
 
@@ -398,8 +391,9 @@ class App extends React.Component {
                         <div className="column">
                           <div className="card notes-section card-color">
                             <div className="card-content is-vcentered has-text-centered card-color">
-                              <p className="title">Beach Notes</p>
-                              <p className="title">{beach.notes}</p>
+                              <h1 className="title">{beach.name} Notes</h1>
+                              <br />
+                              <p className="subtitle is-4">{beach.notes}</p>
                               <div className="title is-centered">
                                 {/* add later  <h2><i className="title fas fa-thumbs-up"></i><i className="title fas fa-thumbs-down"></i></h2>*/}
                               </div>
@@ -409,8 +403,6 @@ class App extends React.Component {
                             <footer className="card-footer">
                               <p className="card-footer-item"></p>
                               <div className="foot">
-
-
                                 <button className= "button is-primary is-link is-outlined is-focused" value={beach.id} onClick={this.deleteBeach}>delete beach</button>
                               </div>
                               {/* edit newBeach_notes */}
@@ -526,17 +518,18 @@ class App extends React.Component {
                         </div>
                       </details>
                     </div>
+                  </div>
                 </li>
               })
             }
           </ul>
+        </div>
       </div>
-    </div>
 
       {/* page footer */}
       <footer className="footer card-color">
         <div className="content has-text-centered card-color">
-            <p><strong> catZwebZ 2020
+            <p><strong>
 
             <a href="https://www.facebook.com/caroleatierney/"><i className="fab fa-facebook-square fa-3x fa-fw"></i></a>
             <a href="https://www.facebook.com/caroleatierney/" target="_top"><i className="fas fa-envelope fa-3x fa-fw" target="_blank"></i></a>

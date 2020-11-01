@@ -12,18 +12,12 @@
   --medium-slate-blue:#5c71a0;
 }
 
-/* html {
-  overflow-y: visible;
-} */
-
 * {
   /* border: 2px solid gold; */
 }
 
 .navbar, navbar-menu {
 display: flex;
-  /*   flex-direction: row; */
-  /* display: inline-block; */
   background-color: var(--sky-blue);
 }
 
@@ -38,27 +32,13 @@ body {
 
 .photo-section {
   color: #37312f;
-  /* background-color: var(--sand); */
-}
-
-.hero {
-  color: #9d6a41;
-  /* background-color: var(--sand); */
-
-  /* font-family: 'Liu Jian Mao Cao', cursive; */
-
-}
-
-.beach-container {
-  /* background-color: var(--sand); */
 }
 
 h1 {
   font-family: 'Liu Jian Mao Cao', cursive;
-  color: #9d6a41;
 }
 
-.card-color {
+.card-color-create {
   background-color: var(--sand);
 }
 
@@ -104,22 +84,18 @@ h2 span {
   /* https://stackoverflow.com/questions/44360722/add-text-over-images-next-to-each-other-with-react-inline-styles */
 /* } */
 
-/* .notes-section .todo-card .card.header .card-title .card { */
-.card-color {
-  background-color: var(--sand);
-}
-
 .icon {
   width: 100%;
   justify-content: center;
-  /* background-color: var(--sand); */
 }
 
+.box {
+  margin: 15px;
+}
 .foot{
   /* justify-content: space-evenly; */
   /* align-items: center; */
   /* align-content: space-between; */
   display:flex;
   align-items:left;
-  color: red;
 }
