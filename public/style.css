@@ -28,7 +28,7 @@ display: flex;
 }
 
 body {
-  /* background-color: var(--sand); */
+  background-color: var(--sand);
 }
 
 .image {
@@ -43,14 +43,14 @@ body {
 
 .hero {
   color: #9d6a41;
-  background-color: var(--sand);
+  /* background-color: var(--sand); */
 
   /* font-family: 'Liu Jian Mao Cao', cursive; */
 
 }
 
 .beach-container {
-  background-color: var(--sand);
+  /* background-color: var(--sand); */
 }
 
 h1 {
@@ -58,27 +58,55 @@ h1 {
   color: #9d6a41;
 }
 
-h2 {
+.card-color {
+  background-color: var(--sand);
+}
+
+/* h2 {
   font-family: 'Roboto Slab', serif;
   position: absolute;
   top: 100px;
   left:0;
   width: 100%
+  align-items: flex-end;
 }
 
 h2 span {
   color: white;
-   font: bold 24px/45px Helvetica, Sans-Serif;
-   letter-spacing: -1px;
-   background: rgb(0, 0, 0); /* fallback color */
-   background: rgba(0, 0, 0, 0);
-   padding: 10px;
+  font: bold 24px/45px Helvetica, Sans-Serif;
+  letter-spacing: -1px;
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0);
+  padding: 5px; */
   /* help from below link */
   /* https://stackoverflow.com/questions/44360722/add-text-over-images-next-to-each-other-with-react-inline-styles */
-}
+/* } */
 
-.notes-section .todo-card .card.header .card-title .card {
-  /* background-color: var(--sand); */
+/* h3 {
+  font-family: 'Roboto Slab', serif;
+  position: absolute;
+  top: 450px;
+  left:0; */
+  /* bottom: 100px; */
+  /* right:50px; */
+  /* width: 100%
+  align-items: flex-end;
+/* } */
+
+/* h3 span {
+  color: red;
+  font: bold 24px/45px Helvetica, Sans-Serif;
+  letter-spacing: -1px;
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0);
+  padding: 5px; */
+  /* help from below link */
+  /* https://stackoverflow.com/questions/44360722/add-text-over-images-next-to-each-other-with-react-inline-styles */
+/* } */
+
+/* .notes-section .todo-card .card.header .card-title .card { */
+.card-color {
+  background-color: var(--sand);
 }
 
 .icon {

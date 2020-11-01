@@ -300,12 +300,10 @@ class App extends React.Component {
             <div className="navbar-end">
               <div className="navbar-item">
                 <div className="buttons">
-                  <a className= "button is-primary is-light is-outlined is-focused">
-                    <strong>get started</strong>
-                  </a>
-                  <a className= "button is-primary is-light is-outlined is-focused">
-                    <strong>log in</strong>
-                  </a>
+                  <button className= "button is-primary is-link is-outlined is-focused">
+                    <strong>get started</strong></button>
+                  <button  className= "button is-primary is-link is-outlined is-focused">
+                    <strong>log in</strong></button>
                 </div>
               </div>
             </div>
@@ -331,7 +329,7 @@ class App extends React.Component {
           <details>
             <summary>Create new discovered private Beach!</summary>
               <div className="card">
-                <div className="card-content">
+                <div className="card-content card-color">
                   <form onSubmit={this.createBeach}>
                     <input onKeyUp={this.changeNewBeachName} type='text' placeholder='name' /><br/>
                     <input onKeyUp={this.changeNewBeachPhoto} type='text' placeholder='photo' /><br/>
@@ -388,22 +386,18 @@ class App extends React.Component {
 
                   return <li key={index}>
                     <div className="columns is-mobile">
-
-                      {/* beach photo carousel} */}
                       <div className="column photo-section">
-
-                        <h1 className="title is-2">{beach.name}</h1>
-                          <img src={beach.photo}/>
+                        <h2>{beach.name}</h2>
+                        <img src={beach.photo}/>
                         <h3>photo credit: {beach.photo_credit}</h3>
-
                       </div>
 
                       {/* beach card */}
                       {/* show beach notes with button links*/}
                       <div className="column is-multiline notes-section">
-                        <div className="column notes-section">
-                          <div className="card notes-section">
-                            <div className="card-content is-vcentered has-text-centered">
+                        <div className="column">
+                          <div className="card notes-section card-color">
+                            <div className="card-content is-vcentered has-text-centered card-color">
                               <p className="title">Beach Notes</p>
                               <p className="title">{beach.notes}</p>
                               <div className="title is-centered">
@@ -415,13 +409,15 @@ class App extends React.Component {
                             <footer className="card-footer">
                               <p className="card-footer-item"></p>
                               <div className="foot">
-                                <button value={beach.id} onClick={this.deleteBeach}>delete beach</button>
+
+
+                                <button className= "button is-primary is-link is-outlined is-focused" value={beach.id} onClick={this.deleteBeach}>delete beach</button>
                               </div>
                               {/* edit newBeach_notes */}
                               <details>
                                 <summary>edit notes</summary>
                                 <div className="card">
-                                  <div className="card-content">
+                                  <div className="card-content card-color">
                                     <form id={beach.id} onSubmit={this.updateBeach}>
                                     <textarea onKeyUp={this.changeUpdateBeachNotes} defaultValue={beach.notes}></textarea><br/>
                                     <input type="submit" value="Update Beach Notes!" />
@@ -439,7 +435,7 @@ class App extends React.Component {
                     <div className="container">
                       <details>
                         <summary>more information</summary>
-                        <div className="card todo-card is-vcentered has-text-centered is-flex-wrap-wrap">
+                        <div className="card is-vcentered has-text-centered is-flex-wrap-wrap card-color">
                           <div className="card-header">
                             <div className="card-title">
                               <p> things to do at {beach.name}</p>
@@ -538,8 +534,8 @@ class App extends React.Component {
     </div>
 
       {/* page footer */}
-      <footer className="footer">
-        <div className="content has-text-centered">
+      <footer className="footer card-color">
+        <div className="content has-text-centered card-color">
             <p><strong> catZwebZ 2020
 
             <a href="https://www.facebook.com/caroleatierney/"><i className="fab fa-facebook-square fa-3x fa-fw"></i></a>
