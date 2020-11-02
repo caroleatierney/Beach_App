@@ -1,14 +1,12 @@
-Final Project:  marshfieldbeachapp
+**#Final Project:#**  ###marshfieldbeachapp###
 App for Marshfield residents and/or vacationers to learn about all the beaches we have to visit.
 
-by Carole Tierney
-[github](https://github.com/caroleatierney)]
+##by Carole Tierney:##. *[github](https://github.com/caroleatierney)]*
 
-Link to marshfieldbeachapp on Heroku: https://floating-reaches-51954.herokuapp.com/
-
-Link to Trello: https://trello.com/b/D7GnYxrf/final-portfolio
-
-Link to Figma Wireframe: https://www.figma.com/file/3fCI16gyonHQyNZWh9CWn5/Final-Wireframe?node-id=258221%3A449
+**Project Links**
+*Link to marshfieldbeachapp on *Heroku: https://floating-reaches-51954.herokuapp.com/*
+*Link to Trello: *https://trello.com/b/D7GnYxrf/final-portfolio*
+*Link to Figma Wireframe: *https://www.figma.com/file/3fCI16gyonHQyNZWh9CWn5/Final-Wireframe?node-id=258221%3A449*
 
 The app I created uses the following technologies: HTML, CSS, Javascript, PERN stack: Postgres Express React Node. 
 
@@ -16,7 +14,7 @@ MVP for final project:
 hosted on Git
 deployed online
 frequent commits
-daily commits
+daily commits 
 a readme file with a link to hosted app 
 
 It is deployed on Heroku 
@@ -63,4 +61,5 @@ Explains which improvements you might make
 Extras:
 used an api
 used bulma
-styled readme
+styled readme   
+      
