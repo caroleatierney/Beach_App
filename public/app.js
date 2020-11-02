@@ -401,22 +401,21 @@ class App extends React.Component {
 
                             {/* card footer */}
                             <footer className="card-footer">
-                              <p className="card-footer-item"></p>
-                              <div className="foot">
+
                                 <button className= "button is-primary is-link is-outlined is-focused" value={beach.id} onClick={this.deleteBeach}>delete beach</button>
-                              </div>
-                              {/* edit newBeach_notes */}
-                              <details>
-                                <summary>edit notes</summary>
-                                <div className="card">
-                                  <div className="card-content card-color">
-                                    <form id={beach.id} onSubmit={this.updateBeach}>
-                                    <textarea onKeyUp={this.changeUpdateBeachNotes} defaultValue={beach.notes}></textarea><br/>
-                                    <input type="submit" value="Update Beach Notes!" />
-                                    </form>
+                                {/* edit newBeach_notes */}
+                                <details>
+                                  <summary>edit notes</summary>
+                                  <div className="card">
+                                    <div className="card-content card-color">
+                                      <form id={beach.id} onSubmit={this.updateBeach}>
+                                      <textarea onKeyUp={this.changeUpdateBeachNotes} defaultValue={beach.notes}></textarea><br/>
+                                      <input type="submit" value="Update Beach Notes!" />
+                                      </form>
+                                    </div>
                                   </div>
-                                </div>
-                              </details>
+                                </details>
+
                             </footer>
                           </div>
                         </div>
