@@ -5,9 +5,9 @@
 ## by Carole Tierney: [github](https://github.com/caroleatierney)]
 
 ### Project Links
-  * Heroku: marshfieldbeachapp on *Heroku: https://floating-reaches-51954.herokuapp.com/
-  * Trello: *https://trello.com/b/D7GnYxrf/final-portfolio
-  * Figma Wireframe: *https://www.figma.com/file/3fCI16gyonHQyNZWh9CWn5/Final-Wireframe?node-id=258221%3A449
+* Heroku: marshfieldbeachapp on *Heroku: https://floating-reaches-51954.herokuapp.com/
+* Trello: *https://trello.com/b/D7GnYxrf/final-portfolio
+* Figma Wireframe: *https://www.figma.com/file/3fCI16gyonHQyNZWh9CWn5/Final-Wireframe?node-id=258221%3A449
       
 ### The app I created uses the following technologies: HTML, CSS, Javascript, PERN stack: Postgres Express React Node.
 - [x] MVP for final project:
@@ -48,8 +48,7 @@
 * finally was able to have just one thing update and save the other fields and then use the saved fields to set state
 
 ### Technical details
-* too afraid to use multiple files or arrays so I did a lot of string manipulation to create arrays and map through them
-
+* too afraid to use multiple files or arrays so I did a lot of string manipulation to create arrays and map through t
 ### Explains the technical challenges
 * kept getting errors when tring to make a carousel in Bulma
 * problems reading data using a fetch because I needed to do the JSON part
