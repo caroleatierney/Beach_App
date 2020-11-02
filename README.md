@@ -5,7 +5,7 @@
 ## by Carole Tierney: [github](https://github.com/caroleatierney)]
 
 ### Project Links
-* Heroku: marshfieldbeachapp on *Heroku: https://floating-reaches-51954.herokuapp.com/*
+* Heroku marshfieldbeachapp: *https://floating-reaches-51954.herokuapp.com/*
 * Trello: *https://trello.com/b/D7GnYxrf/final-portfolio*
 * Figma Wireframe: *https://www.figma.com/file/3fCI16gyonHQyNZWh9CWn5/Final-Wireframe?node-id=258221%3A449*
       
@@ -21,7 +21,7 @@
 * accidentally created a master branch and would like to remove it but was afraid I could mess something up.  It is not in dev just GitHub.
 
 ### Wish List:
-* add map link
+* add map link    
 * add carousel for each beach
 * add Bluefish Cove
 * add 4th cliff
