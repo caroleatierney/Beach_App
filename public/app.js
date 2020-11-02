@@ -529,11 +529,10 @@ class App extends React.Component {
             <p><strong>
 
             <a href="https://www.facebook.com/caroleatierney/"><i className="fab fa-facebook-square fa-3x fa-fw"></i></a>
-            <a href="https://www.facebook.com/caroleatierney/" target="_top"><i className="fas fa-envelope fa-3x fa-fw" target="_blank"></i></a>
+            <a href="mailto:caroleatierney@gmail.com" target="_top"><i className="fas fa-envelope fa-3x fa-fw" target="_blank"></i></a>
             <a href="https://www.instagram.com/caroleatierney/" target="_blank"><i className="fab fa-instagram-square fa-3x fa-fw"></i></a>
-            <a href="https://www.linkedin.com/in/caroleatierney/" target="_blank"><i className="fab fa-twitter-square fa-3x fa-fw"></i></a>
-            <a href="https://www.linkedin.com/in/caroleatierney/" target="_blank"><i className="fab fa-instagram-square fa-3x fa-fw"></i></a>
-            <a href="https://www.linkedin.com/in/caroleatierney/" target="_blank"><i className="fab fa-twitter-square fa-3x fa-fw"></i></a>
+            <a href="https://twitter.com/CaroleATierney" target="_blank"><i className="fab fa-twitter-square fa-3x fa-fw"></i></a>
+            <a href="https://www.linkedin.com/in/caroleatierney/" target="_blank"><i className="fab fa-linkedin fa-3x fa-fw"></i></a>
 
             </strong></p>
             <div>Recreation icons made by <a href="https://www.flaticon.local/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.local/" title="Flaticon">www.flaticon.local</a></div>
