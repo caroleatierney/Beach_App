@@ -42,6 +42,15 @@ h1 {
   background-color: var(--sand);
 }
 
+.todo {
+  display: flex;
+  justify-content: space-between; 
+}
+
+.box {
+  margin: 15px;
+}
+
 .footer {
   background-color: var(--sand);
   padding: 0 0 0 0;
@@ -88,26 +97,3 @@ h2 span {
   /* help from below link */
   /* https://stackoverflow.com/questions/44360722/add-text-over-images-next-to-each-other-with-react-inline-styles */
 /* } */
-
-.icon {
-  width: 100%;
-  justify-content: center;
-}
-
-.box {
-  margin: 15px;
-}
-.card.footer{
-  display:flex;
-  border-top: 0px
-  align-content: space-between;
-
-  /* justify-content: flex-start; */
-  /* align-items: center; */
-    /* align-items:flex-start; */
-}
-
-.details {
-  display: flex;
-  align-content: space-between;
-}

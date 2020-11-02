@@ -387,9 +387,9 @@ class App extends React.Component {
 
                       {/* beach card */}
                       {/* show beach notes with button links*/}
-                      <div className="column is-multiline notes-section">
+                      <div className="column is-multiline">
                         <div className="column">
-                          <div className="card notes-section card-color">
+                          <div className="card">
                             <div className="card-content is-vcentered has-text-centered card-color">
                               <h1 className="title">{beach.name} Notes</h1>
                               <br />
@@ -400,8 +400,7 @@ class App extends React.Component {
                             </div>
 
                             {/* card footer */}
-                            <footer className="card-footer">
-
+                            <footer className="card-footer has-text-centered is-justify-content-space-evenly">
                                 <button className= "button is-primary is-link is-outlined is-focused" value={beach.id} onClick={this.deleteBeach}>delete beach</button>
                                 {/* edit newBeach_notes */}
                                 <details>
@@ -424,33 +423,32 @@ class App extends React.Component {
 
                     {/* beach list container to add more info under CRUD container */}
                     <div className="container">
+
                       <details>
                         <summary>more information</summary>
-                        <div className="card is-vcentered has-text-centered is-flex-wrap-wrap card-color">
-                          <div className="card-header">
-                            <div className="card-title">
+                        <div className="card is-vcentered has-text-centered is-flex-wrap-wrap is-justify-content-space-evenly">
+                          <div className="card-header has-text-centered is-justify-content-space-evenly">
+
+                            <div className="card-title has-text-centered is-justify-content-space-evenly">
                               <p> things to do at {beach.name}</p>
                             </div>
                           </div>
-                          <div className="card-content is-align-items-center">  {/* flexbox properties not working */}
-                            <span className="icon is-flex-direction-row is-justify-content-space-evenly">
-                              {recArray.map(recInfo => (
-                                <img src={recInfo}/>
-                              ))}
-                            </span>
+                          <div className="card-content todo">
+                            {recArray.map(recInfo => (
+                              <img src={recInfo}/>
+                            ))}
                           </div>
-
-                          <footer className="card-footer is-align-content-space-between">
+                          <footer className="card-footer is-align-content-space-between has-text-centered is-justify-content-space-evenly">
                             {/* hours */}
                             <details>
                               <summary>hours</summary>
-                              <div className="card-content">
-                              <ul>
-                                {hoursArray.map(hoursInfo => (
-                                  <li>{hoursInfo}</li>
-                                ))}
-                              </ul>
-                              </div>
+                                <div className="card-content">
+                                  <ul>
+                                    {hoursArray.map(hoursInfo => (
+                                      <li>{hoursInfo}</li>
+                                    ))}
+                                  </ul>
+                                </div>
                             </details>
 
                             {/* parking */}
@@ -469,7 +467,7 @@ class App extends React.Component {
                             <details>
                               <summary onClick={this.getTides} >tides</summary>
                               <div className="card-content">
-                                <h1 className="title has-text-weight-bold">{beach.name}</h1>
+                                <h2 className="title has-text-weight-bold">{beach.name}</h2>
                                 <p className="subtitle is-italic">Latitiude: {beach.latitude}</p>
                                 <p className="subtitle is-italic">Longitude: {beach.longitude}</p>
 
