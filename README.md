@@ -17,11 +17,12 @@ hosted on Git
 deployed online
 frequent commits
 daily commits
-a readme file with a link to hosted app
+a readme file with a link to hosted app 
 
 It is deployed on Heroku 
 
-Unsolved problems: none
+Unsolved problems: 
+accidentally created a master branch and would like to remove it but was afraid I could mess something up.  It is not in dev just GitHub.   
 
 Wish List:
 add map link
