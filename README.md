@@ -5,9 +5,9 @@
 ## by Carole Tierney: [github](https://github.com/caroleatierney)]
 
 ### Project Links
-* Heroku: marshfieldbeachapp on *Heroku: https://floating-reaches-51954.herokuapp.com/
-* Trello: *https://trello.com/b/D7GnYxrf/final-portfolio
-* Figma Wireframe: *https://www.figma.com/file/3fCI16gyonHQyNZWh9CWn5/Final-Wireframe?node-id=258221%3A449
+* Heroku: marshfieldbeachapp on *Heroku: https://floating-reaches-51954.herokuapp.com/*
+* Trello: *https://trello.com/b/D7GnYxrf/final-portfolio*
+* Figma Wireframe: *https://www.figma.com/file/3fCI16gyonHQyNZWh9CWn5/Final-Wireframe?node-id=258221%3A449*
       
 ### The app I created uses the following technologies: HTML, CSS, Javascript, PERN stack: Postgres Express React Node.
 - [x] MVP for final project:
