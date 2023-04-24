@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "engines": {
     "node": "12.18.3 "
-  },  
+  },
   "description": "Server to run Final Project",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+     "start" : "node app.js"
   },
   "repository": {
     "type": "git",
