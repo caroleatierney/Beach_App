@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caroleatierney/marbeachrec.git"
+    "url": "git+https://github.com/caroleatierney/Beach_App.git"
   },
   "author": "Carole A. Tierney",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/caroleatierney/marbeachrec/issues"
+    "url": "https://github.com/caroleatierney/Beach_App/issues"
   },
-  "homepage": "https://github.com/caroleatierney/marbeachrec#readme",
+  "homepage": "https://github.com/caroleatierney/Beach_App",
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
